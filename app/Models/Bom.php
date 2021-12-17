@@ -23,7 +23,10 @@ class Bom extends Model
     
     
   static $rules = [
+		'guia'=>'nulleable',
     	'numeroFactura'=>'nulleable',
+		'producto'=>'nulleable',
+		'modelo'=>'nulleable',
 		'partCode' => 'nulleable',
 		'codigoAlternativo' => 'nulleable',
 		'partName' => 'nulleable',
@@ -35,7 +38,7 @@ class Bom extends Model
     protected $perPage = 20;
 
   
-    protected $fillable = ['partCode','codigoAlternativo','partName','descripcion','cantidad','origen'];
+    protected $fillable = ['guia','numeroFactura','producto','modelo','partCode','codigoAlternativo','partName','descripcion','cantidad','origen'];
 
 
 

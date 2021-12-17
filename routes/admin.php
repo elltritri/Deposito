@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\ListaDepoController;
 
 
 
@@ -14,5 +15,7 @@ Route::get('comparar',[HomeController::class, 'comparar'])->name('admin.comparar
 
 
 Route::get('mostrar',[HomeController::class, 'mostrarDatos'])->name('admin.mostrar');
+Route::get('listaDepo',[listaDepoController::class, 'index'])->name('listaDepo.index');
+Route::get('listaDepostore',[listaDepoController::class, 'store'])->name('lista-depo.store');
 
 

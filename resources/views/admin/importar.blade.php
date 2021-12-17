@@ -16,7 +16,7 @@
                             <div class="card-body">
                                 <div class="col-sm-6" style="float: left">
                                     <label for="">Ingrese N° Factura (Invoice)</label>
-                                    <input type="text" name="numeroFactura" id="numeroFactura" class="form-control"  required>
+                                    {!! Form::select('bom', $bom, null, ['class' => 'form-control' ]) !!}
                                     @if(Session::has('message'))
                                         <p style="color: red">{!! Session::get('message') !!}</p>
                                     @endif

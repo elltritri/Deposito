@@ -23,8 +23,8 @@ class HomeController extends Controller
 
     public function importar(){
 
-        
-        return view('admin.importar');
+        $bom=DB::table('boms')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
+        return view('admin.importar',compact('bom'));
     }
     
     public function importarDatos(Request $request ){
@@ -34,7 +34,12 @@ class HomeController extends Controller
                 Excel::import(new bomImport , $file);
                 $datos = DB::table('boms')
                     ->where('numeroFactura',null)
-                    ->update(['numeroFactura' => $request->numeroFactura]);
+                    ->update([  'numeroFactura' => $request->numeroFactura,
+                                'guia'=>$request->guia,
+                                'producto'=>$request->producto,
+                                'modelo'=>$request->modelo,
+
+                                ]);
 
                 $correo = new IngresodeDatosMailable;
                     Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
