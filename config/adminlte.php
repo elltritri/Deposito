@@ -225,73 +225,54 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        
-
         // Sidebar items:
-        
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'ingresar',
-            'url'         => 'admin/ingresar',
+            'text'        => 'listaDepo',
+            'url'         => 'admin/listaProducto',
             'icon'        => 'far fa-fw fa-file',
         ],
         [
-            'text'        => 'Importar',
-            'url'         => 'admin/importar',
-            'icon'        => 'far fa-fw fa-file',
-        ],
-        [
-            'text'        => 'Comparar',
-            'url'         => 'admin/comparar',
-            'icon'        => 'far fa-fw fa-file',
-            
-           
-        ],
-        
-        [
-            'text'    => 'multilevel',
+            'text'    => 'Ingreso',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'        => ' ingresar Bom',
+                    'url'         => '',
+                    'icon'        => 'far fa-fw fa-file',
+                ],  
+                [
+                    'text'        => 'ingresar Factura',
+                    'url'         => 'admin/ingresar',
+                    'icon'        => 'far fa-fw fa-file',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'        => 'Compararacion de Ingeni',
+                    'url'         => '',
+                    'icon'        => 'far fa-fw fa-file',
                 ],
             ],
         ],
-       
+        [
+            'text'    => 'Importar',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text'        => 'Importar Productos',
+                    'url'         => 'admin/importar',
+                    'icon'        => 'far fa-fw fa-file',
+                ],  
+                [
+                    'text'        => 'Listado',
+                    'url'         => '',
+                    'icon'        => 'far fa-fw fa-file',
+                ],
+                [
+                    'text'        => 'Comparar',
+                    'url'         => 'admin/comparar',
+                    'icon'        => 'far fa-fw fa-file',
+                ],
+            ],
+        ],
     ],
 
     /*

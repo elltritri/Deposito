@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $listaDepo->name ?? 'Show Lista Depo' }}
+    {{ $listaproducto->name ?? 'Show Listaproducto' }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Lista Depo</span>
+                            <span class="card-title">Show Listaproducto</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('lista-depos.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('listaproductos.index') }}"> Back</a>
                         </div>
                     </div>
 
@@ -22,31 +22,31 @@
                         
                         <div class="form-group">
                             <strong>Numerofactura:</strong>
-                            {{ $listaDepo->numeroFactura }}
+                            {{ $listaproducto->numeroFactura }}
                         </div>
                         <div class="form-group">
                             <strong>Producto:</strong>
-                            {{ $listaDepo->producto }}
+                            {{ $listaproducto->producto }}
                         </div>
                         <div class="form-group">
                             <strong>Modelo:</strong>
-                            {{ $listaDepo->modelo }}
+                            {{ $listaproducto->modelo }}
                         </div>
                         <div class="form-group">
                             <strong>Partcode:</strong>
-                            {{ $listaDepo->partCode }}
+                            {{ $listaproducto->partCode }}
                         </div>
                         <div class="form-group">
                             <strong>Codigoalternativo:</strong>
-                            {{ $listaDepo->codigoAlternativo }}
+                            {{ $listaproducto->codigoAlternativo }}
                         </div>
                         <div class="form-group">
                             <strong>Partname:</strong>
-                            {{ $listaDepo->partName }}
+                            {{ $listaproducto->partName }}
                         </div>
                         <div class="form-group">
                             <strong>Cantidad:</strong>
-                            {{ $listaDepo->cantidad }}
+                            {{ $listaproducto->cantidad }}
                         </div>
 
                     </div>

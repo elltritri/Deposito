@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-auto">
-                        <form action="{{ route('admin.importarDatos') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.ingresarDatos') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         
                             <div class="card-body">

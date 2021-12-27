@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ListaDepo
+ * Class Listaproducto
  *
  * @property $id
  * @property $numeroFactura
@@ -15,13 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property $codigoAlternativo
  * @property $partName
  * @property $cantidad
- * @property $created_at
- * @property $updated_at
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class ListaDepo extends Model
+class Listaproducto extends Model
 {
     
     static $rules = [

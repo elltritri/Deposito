@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    Lista Depo
+    Listaproducto
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Lista Depo') }}
+                                {{ __('Listaproducto') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ view('lista-depo.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                {{-- <a href="{{ route('listaproducto.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
-                                </a>
+                                </a> --}}
                               </div>
                         </div>
                     </div>
@@ -48,35 +48,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($listaDepos as $listaDepo) --}}
+                                    @foreach ($listaproductos as $listaproducto)
                                         <tr>
-                                            {{-- <td>{{ ++$i }}</td> --}}
+                                            <td>{{ ++$i }}</td>
                                             
-											{{-- <td>{{ $listaDepo->numeroFactura }}</td>
-											<td>{{ $listaDepo->producto }}</td>
-											<td>{{ $listaDepo->modelo }}</td>
-											<td>{{ $listaDepo->partCode }}</td>
-											<td>{{ $listaDepo->codigoAlternativo }}</td>
-											<td>{{ $listaDepo->partName }}</td>
-											<td>{{ $listaDepo->cantidad }}</td> --}}
+											<td>{{ $listaproducto->numeroFactura }}</td>
+											<td>{{ $listaproducto->producto }}</td>
+											<td>{{ $listaproducto->modelo }}</td>
+											<td>{{ $listaproducto->partCode }}</td>
+											<td>{{ $listaproducto->codigoAlternativo }}</td>
+											<td>{{ $listaproducto->partName }}</td>
+											<td>{{ $listaproducto->cantidad }}</td>
 
                                             <td>
-                                                {{-- <form action="{{ view('lista-depos.destroy',$listaDepo->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ view('lista-depos.show',$listaDepo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ view('lista-depos.edit',$listaDepo->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('listaproductos.destroy',$listaproducto->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('listaproductos.show',$listaproducto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('listaproductos.edit',$listaproducto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form> --}}
+                                                </form>
                                             </td>
                                         </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                {{-- {!! $listaDepos->links() !!} --}}
+                {!! $listaproductos->links() !!}
             </div>
         </div>
     </div>

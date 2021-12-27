@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\bomImport;
 use App\models\Bom;
+use App\models\ListaProducto;
 use App\Mail\IngresodeDatosMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,15 +22,8 @@ class HomeController extends Controller
         return view('admin.ingresar');
     }
 
-    public function importar(){
-
-        $bom=DB::table('boms')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
-        return view('admin.importar',compact('bom'));
-    }
-    
-    public function importarDatos(Request $request ){
+    public function ingresarDatos(Request $request ){
         
-        // $nF = DB::table('boms')->select('COUNT(numeroFactura)')->where('numeroFactura','=',$request->numeroFactura)->get();
                 $file = $request->file('file');
                 Excel::import(new bomImport , $file);
                 $datos = DB::table('boms')
@@ -38,7 +32,6 @@ class HomeController extends Controller
                                 'guia'=>$request->guia,
                                 'producto'=>$request->producto,
                                 'modelo'=>$request->modelo,
-
                                 ]);
 
                 $correo = new IngresodeDatosMailable;
@@ -47,9 +40,25 @@ class HomeController extends Controller
                 $bom = Bom::all();
             
                 return view('admin.mostrar', compact('bom'));
-        }
+    }
+    
+    public function importar(){
 
-        public function comparar(){
+        $bom=DB::table('boms')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
+        $listaDepo= listaproducto::all();
+        return view('admin.importar',compact('bom','listaDepo'));
+    }
+
+    public function importarDatos(Request $request){
+
+        $listaDepo = ListaProducto::create($request->all());
+
+        return redirect()->route('admin.importar')
+            ->with('success', 'ListaDepo created successfully.');
+    }
+    
+    
+    public function comparar(){
             
             $bom = Bom::all();
             
