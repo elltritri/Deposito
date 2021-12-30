@@ -226,38 +226,70 @@ return [
 
     'menu' => [
         // Sidebar items:
+        
         [
-            'text'        => 'listaDepo',
-            'url'         => 'admin/listaProducto',
-            'icon'        => 'far fa-fw fa-file',
-        ],
-        [
-            'text'    => 'Ingreso',
+            'text'    => 'Ingenieria',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text'        => ' ingresar Bom',
+                    'text'        => 'Bom',
                     'url'         => '',
                     'icon'        => 'far fa-fw fa-file',
-                ],  
+                    'submenu' =>[
+                        [
+                            'text'        => 'Ingresar Bom China(NG)',
+                            'url'         => '',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],
+                        [
+                            'text'        => 'Listado Bom China(NG)',
+                            'url'         => 'admin/mostrarBom',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],   
+                        
+                        [
+                            'text'        => 'Ingresar Bom KMG(faltabom)',
+                            'url'         => 'admin/ingresarBom',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],
+                        [
+                            'text'        => 'Listado bom KMG(NG)',
+                            'url'         => '',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],   
+                    ]
+                ],
+                 
                 [
-                    'text'        => 'ingresar Factura',
-                    'url'         => 'admin/ingresar',
+                    'text'        => 'Factura',
+                    'url'         => '',
                     'icon'        => 'far fa-fw fa-file',
+                    'submenu'     =>[
+                        [
+                            'text'        => 'Ingresar Factura',
+                            'url'         => 'admin/ingresarFactura',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],
+                        [
+                            'text'        => 'Listado Factura',
+                            'url'         => '',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],
+                    ]
                 ],
                 [
                     'text'        => 'Compararacion de Ingeni',
-                    'url'         => '',
+                    'url'         => 'admin/compararBF',
                     'icon'        => 'far fa-fw fa-file',
                 ],
             ],
         ],
         [
-            'text'    => 'Importar',
+            'text'    => 'Deposito',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text'        => 'Importar Productos',
+                    'text'        => 'Ingresar Productos',
                     'url'         => 'admin/importar',
                     'icon'        => 'far fa-fw fa-file',
                 ],  

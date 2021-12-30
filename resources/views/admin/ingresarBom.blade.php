@@ -9,27 +9,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-auto">
-                        <form action="{{ route('admin.ingresarDatos') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.ingresarDatosBom') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        
                             <div class="card-body">
-                                <div>
-                                    <div class="col-sm-6" style="float: left">
-                                        <label for="">N° Factura :</label>
-                                        <input type="text" name="numeroFactura" id="numeroFactura" class="form-control" placeholder="Ingrese N° de Factura"  required>
-                                        @if(Session::has('message'))
-                                            <p style="color: red">{!! Session::get('message') !!}</p>
-                                        @endif
-                                    </div>
-                                    <div class="col-sm-6" style="float: left">
-                                        <label for="">N° Guia</label>
-                                        <input type="text" name="guia" id="guia" class="form-control" placeholder="Ingrese N° de Guia"  required>
-                                        @if(Session::has('message'))
-                                            <p style="color: red">{!! Session::get('message') !!}</p>
-                                        @endif
-                                    </div>
-                                </div>
-                                
+                                <div style="text-align: center">
+                                    <h1>Ingreso de BOM</h1>
+                                </div>        
                                 <div>
                                     <div class="col-sm-6 mt-4" style="float: left">
                                         <label for="">Producto:</label>

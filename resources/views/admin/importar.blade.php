@@ -29,6 +29,20 @@
                                     @endif
                                 </div>
                                 <div class="col-sm-6" style="float: left">
+                                    <label for="">Ingrese Producto</label>
+                                    <input type="text" name="producto" id="producto" class="form-control"  required>
+                                    @if(Session::has('message'))
+                                        <p style="color: red">{!! Session::get('message') !!}</p>
+                                    @endif
+                                </div>
+                                <div class="col-sm-6" style="float: left">
+                                    <label for="">Ingrese Modelo</label>
+                                    <input type="text" name="modelo" id="modelo" class="form-control"  required>
+                                    @if(Session::has('message'))
+                                        <p style="color: red">{!! Session::get('message') !!}</p>
+                                    @endif
+                                </div>
+                                <div class="col-sm-6" style="float: left">
                                     <label for="">Ingrese ParCode</label>
                                     <input type="text" name="partCode" id="partCode" class="form-control"  required>
                                     @if(Session::has('message'))
@@ -54,9 +68,11 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>N° Factura</th>
+                                        <th>Guia</th>
                                         <th>Par Code</th>
                                         <th>Codigo</th> 
-                                        <th>Part Name</th>
+                                        <th>Producto</th> 
+                                        <th>Modelo</th> 
                                         <th>Descripcion</th>
                                         <th>Cantidad</th>
                                         
@@ -68,13 +84,13 @@
                                     @foreach ($listaDepo as $fil)
                                         <tr>
                                             <td>{{ $fil->numeroFactura }}</td>
+                                            <td>{{ $fil->guia }}</td>
                                             <td>{{ $fil->partCode }}</td>
                                             <td>{{ $fil->codigoAlternativo }}</td>
-                                            <td>{{ $fil->partName }}</td>
-                                            <td>{{ $fil->descripcion }}</td>
+                                            <td>{{ $fil->producto }}</td>
+                                            <td>{{ $fil->modelo }}</td>
                                             <td>{{ $fil->cantidad }}</td>
-                                        
-                                            
+                                            <td>{{ $fil->descripcion }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
