@@ -254,7 +254,7 @@ return [
                         ],
                         [
                             'text'        => 'Listado bom KMG(NG)',
-                            'url'         => '',
+                            'url'         => 'admin/mostrarDatosBom',
                             'icon'        => 'far fa-fw fa-file',
                         ],   
                     ]
@@ -272,7 +272,7 @@ return [
                         ],
                         [
                             'text'        => 'Listado Factura',
-                            'url'         => '',
+                            'url'         => 'admin/mostrarDatosFactura',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                     ]

@@ -9,44 +9,47 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Tabla de BOM KMG</h1>
-                        </div>  
+                            <h1>Tabla de Facturas</h1>
+                        </div>
+                        <div class="col-sm-8 mt-4" style="text-align: center">
+                            <label for="">Ingrese N° Factura (Invoice)</label>
+                            {!! Form::select('numeroFactura', $bom, null, ['class' => 'form-control' , 'onchange' => 'mostrar']) !!}
+                                @if(Session::has('message'))
+                                    <p style="color: red">{!! Session::get('message') !!}</p>
+                                @endif
+                            <input type="submit" value="Ver" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="text-align: center" id="Divfacturas">   
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tabla2" class="table table-striped table-hover">
+                                <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            
-                                            <th>Par Code</th>
-                                            <th>Codigo</th> 
-                                            <th>Part Name</th>
-                                            <th>Descripcion</th>
-                                            <th>Cantidad</th>
-                                            <th>Origen</th>
-                                            
+                                            <th>Guia</th>
+                                            <th>N° Factura</th>
+                                            <th>Producto</th>
+                                            <th>Modelo</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
-                                        @foreach ($bom as $fil)
-                                            <tr>
-                                                
-                                                <td>{{ $fil->partCode }}</td>
-                                                <td>{{ $fil->codigoAlternativo }}</td>
-                                                <td>{{ $fil->partName }}</td>
-                                                <td>{{ $fil->descripcion }}</td>
-                                                <td>{{ $fil->cantidad }}</td>
-                                                <td>{{ $fil->origen }}</td>
-                                                
-                                            </tr>
+                                        @foreach ( $listaFact as $list )
+                                        <tr>
+                                            <td>{{ $list->guia }}</td>
+                                            <td>{{ $list->numeroFactura }}</td>
+                                            <td>{{ $list->producto }}</td>
+                                            <td>{{ $list->modelo }}</td>
+                                        </tr>
                                         @endforeach
+                                            
+                                        
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
-                        
-                    </div>
                 </div>    
             </div>
         </div>

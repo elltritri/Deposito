@@ -13,18 +13,23 @@ use App\models\ListaProducto;
 use App\models\Listadofactura;
 use App\Mail\IngresodeDatosMailable;
 use Illuminate\Support\Facades\Mail;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
 class HomeController extends Controller
 {
     public function index(){
         return view('admin.index');
     }
+ 
     // DATOS DE FACTURA
     public function ingresarFactura(){
+ 
         return view('admin.ingresarFactura');
     }
     public function ingresarDatosFactura(Request $request ){
-                $file = $request->file('file');
+ 
+        $file = $request->file('file');
                 Excel::import(new facturaimport , $file);
                 $datos = DB::table('listadofacturas')
                     ->where('numeroFactura',null)
@@ -38,12 +43,23 @@ class HomeController extends Controller
                 $factura = Listadofactura::all();
                 return view('admin.mostrar', compact('factura'));
     }
+
+    public function mostrarDatosFactura(){
+        $listaFact= DB::table('listadofacturas')->select('guia')->groupBy('numeroFactura')->get();
+        $bom=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
+
+        return view('admin.mostrarFactura',compact('bom','listaFact'));
+    }
+ 
     // DATOS DE BOM
     public function ingresarBom(){
+ 
         return view('admin.ingresarBom');
     }
+ 
     public function ingresarDatosBom(Request $request ){
-                $file = $request->file('file');
+ 
+        $file = $request->file('file');
                 Excel::import(new bomimport , $file);
                 $datos = DB::table('boms')
                     ->where('numeroFactura',null)
@@ -55,13 +71,25 @@ class HomeController extends Controller
                 $bom = ListaProducto::all();
                 return view('admin.mostrarBom', compact('bom'));
     }
+    
+    public function mostrarDatosBom(){
+
+        $bom = bom::all();
+        return view('admin.mostrarBom',compact('bom'));
+            
+        }
+    
+    
     // DATOS DE IMPORTACION
     public function importar(){
+
         $bom=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
         $listaDepo= listaproducto::all();
         return view('admin.importar',compact('bom','listaDepo'));
     }
+
     public function importarDatos(Request $request){
+
         $listaDepo = ListaProducto::create([
                                     'numeroFactura' => $request->numeroFactura,
                                     'guia'=>$request->guia,
@@ -82,6 +110,9 @@ class HomeController extends Controller
         $factura = Listadofactura::all();
         return view('admin.compararBF', compact('bom'));
         }
+  
+
     }
+
     
 

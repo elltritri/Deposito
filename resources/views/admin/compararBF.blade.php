@@ -47,7 +47,7 @@
                                                             {{-- <th>Descripcion</th> --}}
                                                             <th>Cantidad</th>
                                                             {{-- <th>Origen</th> --}}
-                                                            <th>Accion</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -61,7 +61,7 @@
                                                                 {{-- <td>{{ $fil->descripcion }}</td> --}}
                                                                 <td>{{ $fil->cantidad }}</td>
                                                                 {{-- <td>{{ $fil->origen }}</td> --}}
-                                                                <td><input class="btn btn-sm btn-primary "  type="button" value="Asignar" ></td>
+                                                            
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -90,7 +90,7 @@
                                                             {{-- <th>Descripcion</th> --}}
                                                             <th>Cantidad</th>
                                                             {{-- <th>Origen</th> --}}
-                                                            <th>Accion</th>
+                                                           
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -104,7 +104,7 @@
                                                             {{-- <td>{{ $fil->descripcion }}</td> --}}
                                                             <td>{{ $fil->cantidad }}</td>
                                                             {{-- <td>{{ $fil->origen }}</td> --}}
-                                                            <td><input class="btn btn-sm btn-primary "  type="button" value="Asignar" ></td>
+                                                           
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
