@@ -49,10 +49,11 @@ class HomeController extends Controller
     }
 
     public function mostrarDatosFactura($numeroFactura){
+        $numero=$numeroFactura;
         $listaFact= DB::table('listadofacturas')->where('numeroFactura','=',$numeroFactura)->get();
         
 
-        return view('admin.mostrarDatosFactura',compact('listaFact'));
+        return view('admin.mostrarDatosFactura',compact('numero','listaFact'));
     }
  
     // DATOS DE BOM

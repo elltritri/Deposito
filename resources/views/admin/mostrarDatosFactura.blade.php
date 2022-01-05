@@ -9,7 +9,7 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Listado de Factura N° </h1>
+                            <h1>Listado de Factura N° {{ $numero }} </h1>
                         </div>  
                         <div class="card-body">
                             <div class="table-responsive">
