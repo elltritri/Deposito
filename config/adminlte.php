@@ -272,7 +272,7 @@ return [
                         ],
                         [
                             'text'        => 'Listado Factura',
-                            'url'         => 'admin/mostrarDatosFactura',
+                            'url'         => 'admin/mostrarFactura',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                     ]

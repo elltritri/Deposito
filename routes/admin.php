@@ -10,7 +10,8 @@ Route::get('',[HomeController::class, 'index']);
 
 Route::get('ingresarFactura',[HomeController::class, 'ingresarFactura']);
 Route::post('ingresarDatosFactura',[HomeController::class, 'ingresarDatosFactura'])->name('admin.ingresarDatosFactura');
-Route::get('mostrarDatosFactura',[HomeController::class, 'mostrarDatosFactura']);
+Route::get('mostrarFactura',[HomeController::class, 'mostrarFactura'])->name('admin.mostrarFactura');
+Route::get('mostrarDatosFactura/{numeroFactura}',[HomeController::class, 'mostrarDatosFactura'])->name('admin.mostrarDatosFactura');
 
 Route::get('ingresarBom',[HomeController::class, 'ingresarBom']);
 Route::post('ingresarDatosBom',[HomeController::class, 'ingresarDatosBom'])->name('admin.ingresarDatosBom');

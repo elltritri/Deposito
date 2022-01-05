@@ -40,15 +40,19 @@ class HomeController extends Controller
                                 ]);
                 $correo = new IngresodeDatosMailable;
                     Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
-                $factura = Listadofactura::all();
-                return view('admin.mostrar', compact('factura'));
+                $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+                return view('admin.mostrarFactura', compact('listaFact'));
+    }
+    public function mostrarFactura(){
+        $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+        return view('admin.mostrarFactura', compact('listaFact'));
     }
 
-    public function mostrarDatosFactura(){
-        $listaFact= DB::table('listadofacturas')->select('guia')->groupBy('numeroFactura')->get();
-        $bom=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
+    public function mostrarDatosFactura($numeroFactura){
+        $listaFact= DB::table('listadofacturas')->where('numeroFactura','=',$numeroFactura)->get();
+        
 
-        return view('admin.mostrarFactura',compact('bom','listaFact'));
+        return view('admin.mostrarDatosFactura',compact('listaFact'));
     }
  
     // DATOS DE BOM

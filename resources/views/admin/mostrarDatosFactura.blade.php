@@ -9,50 +9,41 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Tabla de Facturas</h1>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="card" style="text-align: center" id="Divfacturas">   
+                            <h1>Listado de Factura N° </h1>
+                        </div>  
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            <th>Guia</th>
-                                            <th>N° Factura</th>
-                                            <th>Producto</th>
-                                            <th>Modelo</th>
-                                            <th>Acción</th> 
+                                            <th>Par Code</th>
+                                            <th>Codigo</th> 
+                                            <th>Part Name</th>
+                                            <th>Descripcion</th>
+                                            <th>Cantidad</th>
+                                            <th>Origen</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
-                                        @foreach ( $listaFact as $list )
-                                        <tr>
-                                            <td>{{ $list->guia }}</td>
-                                            <td>{{ $list->numeroFactura }}</td>
-                                            <td>{{ $list->producto }}</td>
-                                            <td>{{ $list->modelo }}</td>
-                                            <td>
-                                                <form  method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{route('admin.mostrarDatosFactura', $list->numeroFactura)}}"><i class="fa fa-fw fa-eye"></i> VER</a>
-                                                    
-                                                    @csrf
-                                                    {{-- @method('DELETE') --}}
-                                                    {{-- <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button> --}}
-                                                </form>
-                                            </td>
-                                        </tr>
+                                        @foreach ($listaFact as $fil)
+                                            <tr>
+                                                <td>{{ $fil->partCode }}</td>
+                                                <td>{{ $fil->codigoAlternativo }}</td>
+                                                <td>{{ $fil->partName }}</td>
+                                                <td>{{ $fil->descripcion }}</td>
+                                                <td>{{ $fil->cantidad }}</td>
+                                                <td>{{ $fil->origen }}</td>
+                                                
+                                            </tr>
                                         @endforeach
-                                            
-                                        
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
+                        
+                    </div>
                 </div>    
             </div>
         </div>
@@ -282,6 +273,4 @@
         } );
     </script>
 @endsection
-
-
     
