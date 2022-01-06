@@ -16,14 +16,21 @@
                                     <h1>Ingreso de BOM</h1>
                                 </div>        
                                 <div>
-                                    <div class="col-sm-6 mt-4" style="float: left">
+                                    <div class="col-sm-4 mt-4" style="float: left">
+                                        <label for="">N°Bom:</label>
+                                        <input type="text" name="numeroBom" id="numeroBom" class="form-control" value="{{ $numerobom+1 }}">
+                                        @if(Session::has('message'))
+                                            <p style="color: red">{!! Session::get('message') !!}</p>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-4 mt-4" style="float: left">
                                         <label for="">Producto:</label>
                                         <input type="text" name="producto" id="producto" class="form-control" placeholder="Ingrese el Producto"  required>
                                         @if(Session::has('message'))
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
                                     </div>
-                                    <div class="col-sm-6 mt-4" style="float: left">
+                                    <div class="col-sm-4 mt-4" style="float: left">
                                         <label for="">Modelo:</label>
                                         <input type="text" name="modelo" id="modelo" class="form-control" placeholder="Ingrese el Modelo" required>
                                         @if(Session::has('message'))

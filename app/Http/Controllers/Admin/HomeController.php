@@ -56,23 +56,30 @@ class HomeController extends Controller
     }
     // DATOS DE BOM
     public function ingresarBom(){
-        return view('admin.ingresarBom');
+        $numerobom= DB::table('boms')->max('id_bom');
+       
+        return view('admin.ingresarBom', compact('numerobom'));
     }
     public function ingresarDatosBom(Request $request ){
         $file = $request->file('file');
         Excel::import(new bomimport , $file);
-        $datos = DB::table('boms')
-            ->where('numeroFactura',null)
-            ->update([  'producto'=>$request->producto,
-                        'modelo'=>$request->modelo,
-                        ]);
+        
+        $datos = DB::table('boms')  
+        ->where('producto',null)                
+        ->update(['producto'=>$request->producto,'modelo'=>$request->modelo,'id_bom'=>$request->numeroBom]);
+                        
+                                    
+        
         $correo = new IngresodeDatosMailable;
-            Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
+        Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
+        
         $bom = bom::all();
+        
         return view('admin.mostrarBom', compact('bom'));
     }
     public function mostrarDatosBom(){
         $bom = bom::all();
+        
         return view('admin.mostrarBom',compact('bom'));
     }
     
