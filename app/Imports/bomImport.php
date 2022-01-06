@@ -4,20 +4,24 @@ namespace App\Imports;
 
 use App\Models\bom;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class bomImport implements ToModel
+class bomImport implements ToModel, WithStartRow
 {
-    
+    public function startRow(): int
+    {
+        return 2;
+    }
     public function model(array $row)
     {
         return new bom([
-            
-            'partCode'=> $row[0],
-            'codigoAlternativo'=> $row[1],
-            'partName' => $row[2],
-            
-            'cantidad' => $row[4],
-            'origen' => $row[5],
+            'partCode'=> $row['1'],
+            'codigoAlternativo'=> $row['2'],
+            'partName' => $row['3'],
+            'descripcion' => $row['4'],
+            'cantidad' => $row['5'],
+            'origen' => $row['6'],
         ]);
     }
-}
+
+}   

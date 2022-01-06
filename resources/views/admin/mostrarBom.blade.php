@@ -4,7 +4,6 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            
             <div class="col-sm-12 mt-4">
                 <div class="card" style="text-align: center">
                     <div>
@@ -16,36 +15,33 @@
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            
+                                            <th>Producto</th>
+                                            <th>Modelo</th>
                                             <th>Par Code</th>
                                             <th>Codigo</th> 
                                             <th>Part Name</th>
                                             <th>Descripcion</th>
                                             <th>Cantidad</th>
                                             <th>Origen</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
                                         @foreach ($bom as $fil)
                                             <tr>
-                                                
+                                                <td>{{ $fil->producto }}</td>
+                                                <td>{{ $fil->modelo }}</td>
                                                 <td>{{ $fil->partCode }}</td>
                                                 <td>{{ $fil->codigoAlternativo }}</td>
                                                 <td>{{ $fil->partName }}</td>
                                                 <td>{{ $fil->descripcion }}</td>
                                                 <td>{{ $fil->cantidad }}</td>
                                                 <td>{{ $fil->origen }}</td>
-                                                
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
-                        
                     </div>
                 </div>    
             </div>

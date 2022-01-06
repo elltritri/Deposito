@@ -47,7 +47,6 @@ class HomeController extends Controller
         $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
         return view('admin.mostrarFactura', compact('listaFact'));
     }
-
     public function mostrarDatosFactura($numeroFactura){
         $numero=$numeroFactura;
         $listaFact= DB::table('listadofacturas')->where('numeroFactura','=',$numeroFactura)->get();
@@ -55,34 +54,27 @@ class HomeController extends Controller
 
         return view('admin.mostrarDatosFactura',compact('numero','listaFact'));
     }
- 
     // DATOS DE BOM
     public function ingresarBom(){
- 
         return view('admin.ingresarBom');
     }
- 
     public function ingresarDatosBom(Request $request ){
- 
         $file = $request->file('file');
-                Excel::import(new bomimport , $file);
-                $datos = DB::table('boms')
-                    ->where('numeroFactura',null)
-                    ->update([  'producto'=>$request->producto,
-                                'modelo'=>$request->modelo,
-                                ]);
-                $correo = new IngresodeDatosMailable;
-                    Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
-                $bom = ListaProducto::all();
-                return view('admin.mostrarBom', compact('bom'));
+        Excel::import(new bomimport , $file);
+        $datos = DB::table('boms')
+            ->where('numeroFactura',null)
+            ->update([  'producto'=>$request->producto,
+                        'modelo'=>$request->modelo,
+                        ]);
+        $correo = new IngresodeDatosMailable;
+            Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
+        $bom = bom::all();
+        return view('admin.mostrarBom', compact('bom'));
     }
-    
     public function mostrarDatosBom(){
-
         $bom = bom::all();
         return view('admin.mostrarBom',compact('bom'));
-            
-        }
+    }
     
     
     // DATOS DE IMPORTACION
