@@ -78,10 +78,14 @@ class HomeController extends Controller
         return view('admin.mostrarBom', compact('bom'));
     }
     public function mostrarDatosBom(){
-        $bom = bom::all();
-        
-        return view('admin.mostrarBom',compact('bom'));
+        $listabom= DB::table('boms')->groupBy('id_bom')->get();
+        return view('admin.mostrarBom', compact('listabom'));
     }
+    // public function mostrarDatosBom(){
+    //     $bom = bom::all();
+        
+    //     return view('admin.mostrarBom',compact('bom'));
+    // }
     
     
     // DATOS DE IMPORTACION

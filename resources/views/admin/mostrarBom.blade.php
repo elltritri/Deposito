@@ -15,19 +15,17 @@
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
+                                            <th>Bom</th>
                                             <th>Producto</th>
                                             <th>Modelo</th>
-                                            <th>Par Code</th>
-                                            <th>Codigo</th> 
-                                            <th>Part Name</th>
-                                            <th>Descripcion</th>
-                                            <th>Cantidad</th>
-                                            <th>Origen</th>
+                                           
+                                            <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($bom as $fil)
+                                        @foreach ($listabom as $fil)
                                             <tr>
+                                                <td>{{ $fil->id_bom }}</td>
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
                                                 <td>{{ $fil->partCode }}</td>
