@@ -67,25 +67,25 @@ class HomeController extends Controller
         $datos = DB::table('boms')  
         ->where('producto',null)                
         ->update(['producto'=>$request->producto,'modelo'=>$request->modelo,'id_bom'=>$request->numeroBom]);
-                        
-                                    
-        
+
         $correo = new IngresodeDatosMailable;
         Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
         
-        $bom = bom::all();
+        $listabom = bom::all();
         
-        return view('admin.mostrarBom', compact('bom'));
-    }
-    public function mostrarDatosBom(){
-        $listabom= DB::table('boms')->groupBy('id_bom')->get();
         return view('admin.mostrarBom', compact('listabom'));
     }
-    // public function mostrarDatosBom(){
-    //     $bom = bom::all();
+    public function mostrarBom(){
+        $listabom= DB::table('boms')->groupBy('id_bom')->get();
+        return view('admin.mostrarBom',compact('listabom'));
         
-    //     return view('admin.mostrarBom',compact('bom'));
-    // }
+    }
+    public function mostrarDatosBom(){
+        $listabom = bom::all();
+        return view('admin.mostrarDatosBom', compact('listabom'));
+       
+    }
+    
     
     
     // DATOS DE IMPORTACION

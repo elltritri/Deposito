@@ -15,6 +15,7 @@ Route::get('mostrarDatosFactura/{numeroFactura}',[HomeController::class, 'mostra
 
 Route::get('ingresarBom',[HomeController::class, 'ingresarBom']);
 Route::post('ingresarDatosBom',[HomeController::class, 'ingresarDatosBom'])->name('admin.ingresarDatosBom');
+Route::get('mostrarBom',[HomeController::class, 'mostrarBom'])->name('admin.mostrarBom');
 Route::get('mostrarDatosBom',[HomeController::class, 'mostrarDatosBom'])->name('admin.mostrarDatosBom');
 
 Route::get('importar',[HomeController::class, 'importar'])->name('admin.importar');

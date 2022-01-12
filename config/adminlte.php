@@ -237,24 +237,13 @@ return [
                     'icon'        => 'far fa-fw fa-file',
                     'submenu' =>[
                         [
-                            'text'        => 'Ingresar Bom China(NG)',
-                            'url'         => '',
-                            'icon'        => 'far fa-fw fa-file',
-                        ],
-                        [
-                            'text'        => 'Listado Bom China(NG)',
-                            'url'         => 'admin/mostrarBom',
-                            'icon'        => 'far fa-fw fa-file',
-                        ],   
-                        
-                        [
                             'text'        => 'Ingresar Bom KMG(faltabom)',
                             'url'         => 'admin/ingresarBom',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                         [
                             'text'        => 'Listado bom KMG(NG)',
-                            'url'         => 'admin/mostrarDatosBom',
+                            'url'         => 'admin/mostrarBom',
                             'icon'        => 'far fa-fw fa-file',
                         ],   
                     ]

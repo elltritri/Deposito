@@ -4,17 +4,22 @@ namespace App\Imports;
 
 use App\Models\Listadofactura;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class facturaimport implements ToModel
-{
+class facturaimport implements ToModel, WithStartRow
+{   
+    public function startRow(): int
+    {
+        return 2;
+    }
     public function model(array $row)
     {
         return new Listadofactura([
-            'partCode'=> $row[0],
-            'codigoAlternativo'=> $row[1],
-            'partName' => $row[2],
-            'cantidad' => $row[4],
-            'origen' => $row[5],
+            'partCode'=> $row[1],
+            'codigoAlternativo'=> $row[2],
+            'partName' => $row[3],
+            'cantidad' => $row[5],
+            'origen' => $row[6],
         ]);
     }
 }

@@ -9,7 +9,8 @@
                     <div>
                         <div style="text-align: center">
                             <h1>Tabla de BOM KMG</h1>
-                        </div>  
+                        </div>
+                        <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>  
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="tabla2" class="table table-striped table-hover">
@@ -18,7 +19,12 @@
                                             <th>Bom</th>
                                             <th>Producto</th>
                                             <th>Modelo</th>
-                                            <th>Accion</th>
+                                            <th>Part Code</th>
+                                            <th>Cod. Alternativo</th>
+                                            <th>Part Name</th>
+                                            <th>Descripcion</th>
+                                            <th>Cantidad</th>
+                                            <th>Origen</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -27,18 +33,18 @@
                                                 <td>{{ $fil->id_bom }}</td>
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
-                                                <td> <form  method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{route('admin.mostrarDatosBom', $fil->id_bom)}}"><i class="fa fa-fw fa-eye"></i> VER</a>
-                                                    
-                                                    @csrf
-                                                    {{-- @method('DELETE') --}}
-                                                    {{-- <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button> --}}
-                                                </form></td>
+                                                <td>{{ $fil->partCode }}</td>
+                                                <td>{{ $fil->codigoAlternativo }}</td>
+                                                <td>{{ $fil->partName }}</td>
+                                                <td>{{ $fil->descripcion }}</td>
+                                                <td>{{ $fil->cantidad }}</td>
+                                                <td>{{ $fil->origen }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            
                         </div>
                     </div>
                 </div>    
@@ -58,9 +64,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
 @endsection
 @section('js')
-    
     <script>
-        /*!
+         /*!
             Copyright 2008-2021 SpryMedia Ltd.
 
             This source file is free software, available under the following license:
@@ -247,6 +252,7 @@
             _fnDetectHeader:xa,_fnGetUniqueThs:Na,_fnFeatureHtmlFilter:Kb,_fnFilterComplete:za,_fnFilterCustom:Tb,_fnFilterColumn:Sb,_fnFilter:Rb,_fnFilterCreateSearch:hb,_fnEscapeRegex:ib,_fnFilterData:Ub,_fnFeatureHtmlInfo:Nb,_fnUpdateInfo:Xb,_fnInfoMacros:Yb,_fnInitialise:Ba,_fnInitComplete:Pa,_fnLengthChange:jb,_fnFeatureHtmlLength:Jb,_fnFeatureHtmlPaginate:Ob,_fnPageChange:lb,_fnFeatureHtmlProcessing:Lb,_fnProcessingDisplay:V,_fnFeatureHtmlTable:Mb,_fnScrollDraw:Ha,_fnApplyToChildren:ca,_fnCalculateColumnWidths:Ya,
             _fnThrottle:gb,_fnConvertToWidth:Zb,_fnGetWidestNode:$b,_fnGetMaxLenString:ac,_fnStringToCss:K,_fnSortFlatten:pa,_fnSort:Hb,_fnSortAria:cc,_fnSortListener:nb,_fnSortAttachListener:eb,_fnSortingClasses:Ra,_fnSortData:bc,_fnSaveState:qa,_fnLoadState:dc,_fnImplementState:pb,_fnSettingsFromNode:Sa,_fnLog:da,_fnMap:X,_fnBindAction:ob,_fnCallbackReg:R,_fnCallbackFire:F,_fnLengthOverflow:kb,_fnRenderer:fb,_fnDataSource:Q,_fnRowAttributes:db,_fnExtend:qb,_fnCalculateEnd:function(){}});l.fn.dataTable=u;u.$=
             l;l.fn.dataTableSettings=u.settings;l.fn.dataTableExt=u.ext;l.fn.DataTable=function(a){return l(this).dataTable(a).api()};l.each(u,function(a,b){l.fn.DataTable[a]=b});return u});
+    
     </script>
     <script>
                     /*!
@@ -268,6 +274,10 @@
         $(document).ready(function() {
             $('#tabla2').DataTable();
         } );
+
+      
+    
+
     </script>
 @endsection
     
