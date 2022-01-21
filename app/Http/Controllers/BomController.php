@@ -1,69 +1,54 @@
 <?php
 
 namespace App\Http\Controllers;
+use       App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\bomImport;
+use App\Mail\IngresodeDatosMailable;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
 use App\Models\Bom;
-use Illuminate\Http\Request;
 
 class BomController extends Controller
 {
+    // DATOS DE BOM
+    public function ingresarBom(){
+        $numerobom= DB::table('boms')->max('id_boms');
+        return view('admin.ingresarBom', compact('numerobom'));
+        }
 
-    public function index()
-    {
-        $boms = Bom::paginate();
+    public function ingresarDatosBom(Request $request ){
+        $file = $request->file('file');
+        Excel::import(new bomimport , $file);
 
-        return view('bom.index', compact('boms'))
-            ->with('i', (request()->input('page', 1) - 1) * $boms->perPage());
-    }
+        
+        
+        
+        $datos = DB::table('boms')  
+            ->where('producto',null)                
+            ->update(['id_boms'=>$request->numeroBom,'producto'=>$request->producto,'modelo'=>$request->modelo,'codproducto'=>$request->codproducto, 'cantidad' => $lota]);
+        
+        $correo = new IngresodeDatosMailable; Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
+       
 
+        
+        $listabom= DB::table('boms')->groupBy('modelo')->get();
+        // $listabom = bom::all();
+        return view('admin.mostrarBom', compact('listabom'));
+        }
 
-    public function create()
-    {
-        $bom = new Bom();
-        return view('bom.create', compact('bom'));
-    }
+    public function mostrarBom(){
+        $listabom= DB::table('boms')->groupBy('modelo')->get();
+        return view('admin.mostrarBom',compact('listabom'));
+        }
 
-  
-    public function store(Request $request)
-    {
-        request()->validate(Bom::$rules);
-
-        $bom = Bom::create($request->all());
-
-        return redirect()->route('boms.index')
-            ->with('success', 'Bom created successfully.');
-    }
-
-    public function show($id)
-    {
-        $bom = Bom::find($id);
-
-        return view('bom.show', compact('bom'));
-    }
-
-
-    public function edit($id)
-    {
-        $bom = Bom::find($id);
-
-        return view('bom.edit', compact('bom'));
-    }
-
-    public function update(Request $request, Bom $bom)
-    {
-        request()->validate(Bom::$rules);
-
-        $bom->update($request->all());
-
-        return redirect()->route('boms.index')
-            ->with('success', 'Bom updated successfully');
-    }
-
-    public function destroy($id)
-    {
-        $bom = Bom::find($id)->delete();
-
-        return redirect()->route('boms.index')
-            ->with('success', 'Bom deleted successfully');
-    }
+    public function mostrarDatosBom(){
+        $listabom = bom::all();
+        return view('admin.mostrarDatosBom', compact('listabom'));
+        }
 }

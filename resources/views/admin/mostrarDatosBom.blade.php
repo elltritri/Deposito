@@ -8,19 +8,25 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Tabla de BOM KMG</h1>
+                            <h1>Tabla Detalle BOMS</h1>
                         </div>
-                        <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>  
+                        
+                    </div>
+                </div>
+                <div class="card" style="text-align: center">
+                    <div>
+                        
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            <th>Bom</th>
+                                            <th>Part Code</th>
+                                            <th>Cod. Producto</th>
                                             <th>Producto</th>
                                             <th>Modelo</th>
-                                            <th>Part Code</th>
-                                            <th>Cod. Alternativo</th>
+                                            <th>Part Cod. Alternativo</th>
+                                            <th>Part Cod. Alternativo 2</th>
                                             <th>Part Name</th>
                                             <th>Descripcion</th>
                                             <th>Cantidad</th>
@@ -30,10 +36,11 @@
                                     <tbody>
                                         @foreach ($listabom as $fil)
                                             <tr>
-                                                <td>{{ $fil->id_bom }}</td>
+                                                <td>{{ $fil->partCode }}</td>
+                                                <td>{{ $fil->codproducto }}</td>
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
-                                                <td>{{ $fil->partCode }}</td>
+                                                <td>{{ $fil->codigoAlternativo }}</td>
                                                 <td>{{ $fil->codigoAlternativo }}</td>
                                                 <td>{{ $fil->partName }}</td>
                                                 <td>{{ $fil->descripcion }}</td>

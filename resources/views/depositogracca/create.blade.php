@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    Create Bom
+    Create Depositogracca
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Bom</span>
+                        <span class="card-title">Create Depositogracca</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('bom.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('depositogracca.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('bom.form')
+                            @include('depositogracca.form')
 
                         </form>
                     </div>

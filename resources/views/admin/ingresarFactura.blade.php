@@ -4,17 +4,21 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            
             <div class="col-sm-12 mt-4">
+                <div class="card" style="text-align: center">
+                    <div>
+                        <div style="text-align: center">
+                            <h1>Ingreso de Facturas</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="col-auto">
                         <form action="{{ route('admin.ingresarDatosFactura') }}" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="card-body">
-                                <div style="text-align: center">
-                                    <h1>Ingreso de Factura</h1>
-                                </div>    
+                                 
                                 <div>
                                     <div class="col-sm-6" style="float: left">
                                         <label for="">N° Factura :</label>

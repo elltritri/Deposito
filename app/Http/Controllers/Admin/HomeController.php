@@ -5,88 +5,30 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\bomImport;
 use App\Imports\facturaimport;
-use App\models\Bom;
-use App\models\ListaProducto;
-use App\models\Listadofactura;
 use App\Mail\IngresodeDatosMailable;
 use Illuminate\Support\Facades\Mail;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\Printer;
 
+use App\models\Bom;
+use App\models\ListaProducto;
+use App\models\Listadofactura;
+
+
 class HomeController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         return view('admin.index');
     }
- 
-    // DATOS DE FACTURA
-    public function ingresarFactura(){
- 
-        return view('admin.ingresarFactura');
-    }
-    public function ingresarDatosFactura(Request $request ){
- 
-        $file = $request->file('file');
-                Excel::import(new facturaimport , $file);
-                $datos = DB::table('listadofacturas')
-                    ->where('numeroFactura',null)
-                    ->update([  'numeroFactura' => $request->numeroFactura,
-                                'guia'=>$request->guia,
-                                'producto'=>$request->producto,
-                                'modelo'=>$request->modelo,
-                                ]);
-                $correo = new IngresodeDatosMailable;
-                    Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
-                $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
-                return view('admin.mostrarFactura', compact('listaFact'));
-    }
-    public function mostrarFactura(){
-        $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
-        return view('admin.mostrarFactura', compact('listaFact'));
-    }
-    public function mostrarDatosFactura($numeroFactura){
-        $numero=$numeroFactura;
-        $listaFact= DB::table('listadofacturas')->where('numeroFactura','=',$numeroFactura)->get();
-        
 
-        return view('admin.mostrarDatosFactura',compact('numero','listaFact'));
-    }
-    // DATOS DE BOM
-    public function ingresarBom(){
-        $numerobom= DB::table('boms')->max('id_bom');
-       
-        return view('admin.ingresarBom', compact('numerobom'));
-    }
-    public function ingresarDatosBom(Request $request ){
-        $file = $request->file('file');
-        Excel::import(new bomimport , $file);
-        
-        $datos = DB::table('boms')  
-        ->where('producto',null)                
-        ->update(['producto'=>$request->producto,'modelo'=>$request->modelo,'id_bom'=>$request->numeroBom]);
-
-        $correo = new IngresodeDatosMailable;
-        Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
-        
-        $listabom = bom::all();
-        
-        return view('admin.mostrarBom', compact('listabom'));
-    }
-    public function mostrarBom(){
-        $listabom= DB::table('boms')->groupBy('id_bom')->get();
-        return view('admin.mostrarBom',compact('listabom'));
-        
-    }
-    public function mostrarDatosBom(){
-        $listabom = bom::all();
-        return view('admin.mostrarDatosBom', compact('listabom'));
-       
-    }
-    
-    
     
     // DATOS DE IMPORTACION
     public function importar(){
@@ -95,7 +37,6 @@ class HomeController extends Controller
         $listaDepo= listaproducto::all();
         return view('admin.importar',compact('bom','listaDepo'));
     }
-
     public function importarDatos(Request $request){
 
         $listaDepo = ListaProducto::create([
@@ -114,11 +55,26 @@ class HomeController extends Controller
             return view('admin.comparar', compact('bom'));
             }
     public function compararBF(){
-        $bom = Bom::all();
-        $factura = Listadofactura::all();
-        return view('admin.compararBF', compact('bom'));
+        $producto = DB::table('boms')->select('producto')->groupby('producto')->pluck('producto'); 
+        $modelo = DB::table('boms')->select('modelo')->groupby('modelo')->pluck('modelo');
+        $factura=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
+        return view('admin.compararBF', compact('factura','modelo','producto'));
         }
-  
+    public function compararDatosingenieria(Request $request){
+        $producto =  $request->producto;
+        $modelo   =  $request->modelo;  
+        $factura =  $request->factura;
+        // $consulta = DB::table('boms')->select('partCode','partName','cantidad')->where('producto','=',$producto)->where('modelo','=',$modelo);
+        return view('admin.comparacionBF', compact('producto'));
+    }
+
+    public function indexproducto()
+    {
+        $productos = Producto::paginate();
+
+        return view('producto.index', compact('productos'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
 
     }
 

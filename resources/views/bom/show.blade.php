@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('template_title')
     {{ $bom->name ?? 'Show Bom' }}
@@ -14,7 +14,7 @@
                             <span class="card-title">Show Bom</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('boms.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('bom.index') }}"> Back</a>
                         </div>
                     </div>
 

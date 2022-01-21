@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    Listaproducto
+    Depositogracca
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Listaproducto') }}
+                                {{ __('Depositogracca') }}
                             </span>
 
                              <div class="float-right">
-                                {{-- <a href="{{ route('listaproducto.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('depositogracca.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
-                                </a> --}}
+                                </a>
                               </div>
                         </div>
                     </div>
@@ -36,34 +36,40 @@
                                     <tr>
                                         <th>No</th>
                                         
+										<th>Guia</th>
 										<th>Numerofactura</th>
 										<th>Producto</th>
 										<th>Modelo</th>
 										<th>Partcode</th>
 										<th>Codigoalternativo</th>
 										<th>Partname</th>
+										<th>Descripcion</th>
 										<th>Cantidad</th>
+										<th>Origen</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($listaproductos as $listaproducto)
+                                    @foreach ($depositograccas as $depositogracca)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $listaproducto->numeroFactura }}</td>
-											<td>{{ $listaproducto->producto }}</td>
-											<td>{{ $listaproducto->modelo }}</td>
-											<td>{{ $listaproducto->partCode }}</td>
-											<td>{{ $listaproducto->codigoAlternativo }}</td>
-											<td>{{ $listaproducto->partName }}</td>
-											<td>{{ $listaproducto->cantidad }}</td>
+											<td>{{ $depositogracca->guia }}</td>
+											<td>{{ $depositogracca->numeroFactura }}</td>
+											<td>{{ $depositogracca->producto }}</td>
+											<td>{{ $depositogracca->modelo }}</td>
+											<td>{{ $depositogracca->partCode }}</td>
+											<td>{{ $depositogracca->codigoAlternativo }}</td>
+											<td>{{ $depositogracca->partName }}</td>
+											<td>{{ $depositogracca->descripcion }}</td>
+											<td>{{ $depositogracca->cantidad }}</td>
+											<td>{{ $depositogracca->origen }}</td>
 
                                             <td>
-                                                <form action="{{ route('listaproductos.destroy',$listaproducto->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('listaproductos.show',$listaproducto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('listaproductos.edit',$listaproducto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('depositogracca.destroy',$depositogracca->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.show',$depositogracca->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('depositogracca.edit',$depositogracca->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -76,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $listaproductos->links() !!}
+                {!! $depositograccas->links() !!}
             </div>
         </div>
     </div>

@@ -83,12 +83,12 @@ return [
     |
     */
 
-    'layout_topnav' => true,
+    'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
     'layout_fixed_footer' => true,
-    'layout_dark_mode' => null,
+    // 'layout_dark_mode' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -232,20 +232,41 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
+                    'text'        => 'Producto',
+                    'icon'        => 'far fa-fw fa-file',
+                    'icon_color' => 'blue',
+                    'submenu' =>[
+                        [
+                            'text'        => 'Ingresar Producto',
+                            'url'         => 'producto',
+                            'icon'        => 'far fa-fw fa-file',
+                            'icon_color' => 'blue',
+                        ],
+                        [
+                            'text'        => 'Listado Productos',
+                            // 'url'         => 'admin/mostrarBom',
+                            'icon'        => 'far fa-fw fa-file',
+                            'icon_color' => 'blue',
+                        ],   
+                    ]
+                ],
+                [
                     'text'        => 'Bom',
                     'url'         => '',
                     'icon'        => 'far fa-fw fa-file',
                     'submenu' =>[
                         [
                             'text'        => 'Ingresar Bom KMG(faltabom)',
-                            'url'         => 'admin/ingresarBom',
+                            'url'         => 'ingresarBom',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                         [
                             'text'        => 'Listado bom KMG(NG)',
-                            'url'         => 'admin/mostrarBom',
+                            'url'         => 'mostrarBom',
                             'icon'        => 'far fa-fw fa-file',
-                        ],   
+                        ],
+                           
+                        
                     ]
                 ],
                  
@@ -256,19 +277,19 @@ return [
                     'submenu'     =>[
                         [
                             'text'        => 'Ingresar Factura',
-                            'url'         => 'admin/ingresarFactura',
+                            'url'         => 'ingresarFactura',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                         [
                             'text'        => 'Listado Factura',
-                            'url'         => 'admin/mostrarFactura',
+                            'url'         => 'mostrarFactura',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                     ]
                 ],
                 [
                     'text'        => 'Compararacion de Ingeni',
-                    'url'         => 'admin/compararBF',
+                    'url'         => 'compararBF',
                     'icon'        => 'far fa-fw fa-file',
                 ],
             ],
@@ -278,8 +299,8 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text'        => 'Ingresar Productos',
-                    'url'         => 'admin/importar',
+                    'text'        => 'Gracca',
+                    'url'         => 'depositogracca',
                     'icon'        => 'far fa-fw fa-file',
                 ],  
                 [

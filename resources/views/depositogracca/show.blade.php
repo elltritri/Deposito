@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $listaproducto->name ?? 'Show Listaproducto' }}
+    {{ $depositogracca->name ?? 'Show Depositogracca' }}
 @endsection
 
 @section('content')
@@ -11,42 +11,54 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Listaproducto</span>
+                            <span class="card-title">Show Depositogracca</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('listaproductos.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('depositogracca.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
+                            <strong>Guia:</strong>
+                            {{ $depositogracca->guia }}
+                        </div>
+                        <div class="form-group">
                             <strong>Numerofactura:</strong>
-                            {{ $listaproducto->numeroFactura }}
+                            {{ $depositogracca->numeroFactura }}
                         </div>
                         <div class="form-group">
                             <strong>Producto:</strong>
-                            {{ $listaproducto->producto }}
+                            {{ $depositogracca->producto }}
                         </div>
                         <div class="form-group">
                             <strong>Modelo:</strong>
-                            {{ $listaproducto->modelo }}
+                            {{ $depositogracca->modelo }}
                         </div>
                         <div class="form-group">
                             <strong>Partcode:</strong>
-                            {{ $listaproducto->partCode }}
+                            {{ $depositogracca->partCode }}
                         </div>
                         <div class="form-group">
                             <strong>Codigoalternativo:</strong>
-                            {{ $listaproducto->codigoAlternativo }}
+                            {{ $depositogracca->codigoAlternativo }}
                         </div>
                         <div class="form-group">
                             <strong>Partname:</strong>
-                            {{ $listaproducto->partName }}
+                            {{ $depositogracca->partName }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Descripcion:</strong>
+                            {{ $depositogracca->descripcion }}
                         </div>
                         <div class="form-group">
                             <strong>Cantidad:</strong>
-                            {{ $listaproducto->cantidad }}
+                            {{ $depositogracca->cantidad }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Origen:</strong>
+                            {{ $depositogracca->origen }}
                         </div>
 
                     </div>

@@ -10,8 +10,10 @@ class Boms extends Migration
     {
         Schema::create('boms', function (Blueprint $table) {
             $table->id();
+            $table->string('id_boms')->nullable();
             $table->string('guia')->nullable();
             $table->string('numeroFactura')->nullable();
+            $table->string('codproducto')->nullable();
             $table->string('producto')->nullable();
             $table->string('modelo')->nullable();
             $table->string('partCode')->nullable();

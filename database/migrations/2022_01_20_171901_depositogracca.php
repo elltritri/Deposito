@@ -4,11 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Listaproductos extends Migration
+class Depositogracca extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('listaproductos', function (Blueprint $table) {
+        Schema::create('Depositograccas', function (Blueprint $table) {
             $table->id();
             $table->string('guia')->nullable();
             $table->string('numeroFactura')->nullable();
@@ -26,6 +31,6 @@ class Listaproductos extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('listaproductos');
+        Schema::dropIfExists('Depositograccas');
     }
 }

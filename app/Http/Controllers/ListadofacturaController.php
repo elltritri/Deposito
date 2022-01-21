@@ -1,109 +1,58 @@
 <?php
 
 namespace App\Http\Controllers;
+use       App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\facturaimport;
+use App\Mail\IngresodeDatosMailable;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
 use App\Models\Listadofactura;
-use Illuminate\Http\Request;
 
-/**
- * Class ListadofacturaController
- * @package App\Http\Controllers
- */
+
+
 class ListadofacturaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $listadofacturas = Listadofactura::paginate();
 
-        return view('listadofactura.index', compact('listadofacturas'))
-            ->with('i', (request()->input('page', 1) - 1) * $listadofacturas->perPage());
-    }
+        // DATOS DE FACTURA
+        public function ingresarFactura(){
+             return view('admin.ingresarFactura');
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $listadofactura = new Listadofactura();
-        return view('listadofactura.create', compact('listadofactura'));
-    }
+        public function ingresarDatosFactura(Request $request ){
+     
+            $file = $request->file('file');
+                    Excel::import(new facturaimport , $file);
+                    $datos = DB::table('listadofacturas')
+                        ->where('numeroFactura',null)
+                        ->update([  'numeroFactura' => $request->numeroFactura,
+                                    'guia'=>$request->guia,
+                                    'producto'=>$request->producto,
+                                    'modelo'=>$request->modelo,
+                                    ]);
+                    $correo = new IngresodeDatosMailable;
+                        Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
+                    $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+                    return view('admin.mostrarFactura', compact('listaFact'));
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        request()->validate(Listadofactura::$rules);
+        public function mostrarFactura(){
+            $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+            return view('admin.mostrarFactura', compact('listaFact'));
+        }
 
-        $listadofactura = Listadofactura::create($request->all());
+        public function mostrarDatosFactura($numeroFactura){
+            $numero=$numeroFactura;
+            $listaFact= DB::table('listadofacturas')->where('numeroFactura','=',$numeroFactura)->get();
+            
+    
+            return view('admin.mostrarDatosFactura',compact('numero','listaFact'));
+        }
 
-        return redirect()->route('listadofacturas.index')
-            ->with('success', 'Listadofactura created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $listadofactura = Listadofactura::find($id);
-
-        return view('listadofactura.show', compact('listadofactura'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $listadofactura = Listadofactura::find($id);
-
-        return view('listadofactura.edit', compact('listadofactura'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Listadofactura $listadofactura
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Listadofactura $listadofactura)
-    {
-        request()->validate(Listadofactura::$rules);
-
-        $listadofactura->update($request->all());
-
-        return redirect()->route('listadofacturas.index')
-            ->with('success', 'Listadofactura updated successfully');
-    }
-
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy($id)
-    {
-        $listadofactura = Listadofactura::find($id)->delete();
-
-        return redirect()->route('listadofacturas.index')
-            ->with('success', 'Listadofactura deleted successfully');
-    }
+    
 }

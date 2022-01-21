@@ -10,114 +10,46 @@
                 <div class="card">
                     <div class="card-body" style="text-align: center">
                         <div class="col-auto">
-                            <form action="{{ route('admin.importarDatos') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.compararDatosingenieria') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                
                                     <div class="card-body">
-                                        
-                                            <label for="">Ingrese N° Factura</label>
-                                            <input type="text" name="numeroFactura" id="numeroFactura" class="form-control"  required>
-                                            @if(Session::has('message'))
-                                                <p style="color: red">{!! Session::get('message') !!}</p>
-                                            @endif
-                                            <br>
-                                    
-                                        <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
+                                        <div class="row">
+                                            <div class="col-sm-4 mt-4">
+                                                <div class="col-sm-6" style="float: left">
+                                                    <label for="">Ingrese Producto</label>
+                                                    {!! Form::select('producto', $producto, $producto, ['class' => 'form-control' ]) !!}
+                                                    @if(Session::has('message'))
+                                                        <p style="color: red">{!! Session::get('message') !!}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 mt-4">
+                                                <div class="col-sm-6" style="float: left">
+                                                    <label for="">Ingrese Modelo</label>
+                                                    {!! Form::select('modelo', $modelo, null, ['class' => 'form-control' ]) !!}
+                                                    @if(Session::has('message'))
+                                                        <p style="color: red">{!! Session::get('message') !!}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 mt-4">    
+                                                <label for="">Ingrese N° Factura</label>
+                                                    {!! Form::select('numeroFactura', $factura, null, ['class' => 'form-control' ]) !!}
+                                                    @if(Session::has('message'))
+                                                        <p style="color: red">{!! Session::get('message') !!}</p>
+                                                    @endif
+                                            </div>
+                                            <div class="col-sm-12 mt-4">
+                                                <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
+                                            </div>
+                                        </div>
                                     </div>  
 
                                 
                             </form>
                         </div>
 
-                        <div class="row">
-            
-                            <div class="col-sm-6 mt-4">
-                                <H1> BOM</H1>
-                                <div class="card" style="text-align: center">
-                                    <div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table id="tabla1" class="table table-striped table-hover">
-                                                    <thead class="thead">
-                                                        <tr>
-                                                            {{-- <th>N° Factura</th> --}}
-                                                            <th>Par Code</th>
-                                                            {{-- <th>Codigo</th>  --}}
-                                                            {{-- <th>Part Name</th> --}}
-                                                            {{-- <th>Descripcion</th> --}}
-                                                            <th>Cantidad</th>
-                                                            {{-- <th>Origen</th> --}}
-                                                            
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        
-                                                        @foreach ($bom as $fil)
-                                                            <tr>
-                                                                {{-- <td>{{ $fil->numeroFactura }}</td> --}}
-                                                                <td>{{ $fil->partCode }}</td>
-                                                                {{-- <td>{{ $fil->codigoAlternativo }}</td> --}}
-                                                                {{-- <td>{{ $fil->partName }}</td> --}}
-                                                                {{-- <td>{{ $fil->descripcion }}</td> --}}
-                                                                <td>{{ $fil->cantidad }}</td>
-                                                                {{-- <td>{{ $fil->origen }}</td> --}}
-                                                            
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>    
-                            </div>
-                
-                            <div class="col-sm-6 mt-4">
-                                <H1>Factura</H1>
-                                <div class="card" style="text-align: center">
-                                    <div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table id="tabla2" class="table table-striped table-hover">
-                                                    <thead class="thead">
-                                                        <tr>
-                                                            {{-- <th>N° Factura</th> --}}
-                                                            <th>Par Code</th>
-                                                            {{-- <th>Codigo</th>  --}}
-                                                            {{-- <th>Part Name</th> --}}
-                                                            {{-- <th>Descripcion</th> --}}
-                                                            <th>Cantidad</th>
-                                                            {{-- <th>Origen</th> --}}
-                                                           
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        
-                                                        @foreach ($bom as $fil)
-                                                        <tr>
-                                                            {{-- <td>{{ $fil->numeroFactura }}</td> --}}
-                                                            <td>{{ $fil->partCode }}</td>
-                                                            {{-- <td>{{ $fil->codigoAlternativo }}</td> --}}
-                                                            {{-- <td>{{ $fil->partName }}</td> --}}
-                                                            {{-- <td>{{ $fil->descripcion }}</td> --}}
-                                                            <td>{{ $fil->cantidad }}</td>
-                                                            {{-- <td>{{ $fil->origen }}</td> --}}
-                                                           
-                                                        </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>    
-                            </div>
-                
-                        </div>
+                        
                     </div>
                 </div>    
         </div>

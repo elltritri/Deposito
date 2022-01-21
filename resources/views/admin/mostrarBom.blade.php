@@ -8,14 +8,20 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Tabla de BOM KMG</h1>
-                        </div>  
+                            <h1>Tabla BOMS</h1>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card" style="text-align: center">
+                    <div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>Bom</th>
+                                            <td>Cod. Producto</td>
                                             <th>Producto</th>
                                             <th>Modelo</th>
                                             <th>Accion</th>
@@ -24,11 +30,12 @@
                                     <tbody>
                                         @foreach ($listabom as $fil)
                                             <tr>
-                                                <td>{{ $fil->id_bom }}</td>
+                                                <td>{{ $fil->id_boms }}</td>
+                                                <td>{{ $fil->codproducto }}</td>
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
                                                 <td> <form  method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{route('admin.mostrarDatosBom', $fil->id_bom)}}"><i class="fa fa-fw fa-eye"></i> VER</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{route('admin.mostrarDatosBom', $fil->id)}}"><i class="fa fa-fw fa-eye"></i> VER</a>
                                                     
                                                     @csrf
                                                     {{-- @method('DELETE') --}}

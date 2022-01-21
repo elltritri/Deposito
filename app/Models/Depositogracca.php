@@ -5,21 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Listaproducto
+ * Class Depositogracca
  *
  * @property $id
+ * @property $guia
  * @property $numeroFactura
  * @property $producto
  * @property $modelo
  * @property $partCode
  * @property $codigoAlternativo
  * @property $partName
+ * @property $descripcion
  * @property $cantidad
+ * @property $origen
+ * @property $created_at
+ * @property $updated_at
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Listaproducto extends Model
+class Depositogracca extends Model
 {
     
     static $rules = [
@@ -32,7 +37,7 @@ class Listaproducto extends Model
      *
      * @var array
      */
-    protected $fillable = ['numeroFactura','producto','modelo','partCode','codigoAlternativo','partName','cantidad'];
+    protected $fillable = ['guia','numeroFactura','producto','modelo','partCode','codigoAlternativo','partName','descripcion','cantidad','origen'];
 
 
 
