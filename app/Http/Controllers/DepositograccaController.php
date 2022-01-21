@@ -1,74 +1,47 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Depositogracca;
+use App\Models\Listadofactura;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-/**
- * Class DepositograccaController
- * @package App\Http\Controllers
- */
-class DepositograccaController extends Controller
-{
+class DepositograccaController extends Controller {
     
-    public function index()
-    {
-        $depositograccas = Depositogracca::paginate();
+    public function index(){   
+        $depositograccas= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+        return view('depositogracca.index', compact('depositograccas'));}
 
-        return view('depositogracca.index', compact('depositograccas'))
-            ->with('i', (request()->input('page', 1) - 1) * $depositograccas->perPage());
-    }
-
-   
-    public function create()
-    {
+    public function create(){
         $depositogracca = new Depositogracca();
-        return view('depositogracca.create', compact('depositogracca'));
-    }
+        return view('depositogracca.create', compact('depositogracca'));}
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         request()->validate(Depositogracca::$rules);
-
         $depositogracca = Depositogracca::create($request->all());
-
         return redirect()->route('depositogracca.index')
-            ->with('success', 'Depositogracca created successfully.');
-    }
+            ->with('success', 'Depositogracca created successfully.');}
 
-    public function show($id)
-    {
+    public function show($id){
         $depositogracca = Depositogracca::find($id);
-
-        return view('depositogracca.show', compact('depositogracca'));
-    }
-
+        return view('depositogracca.show', compact('depositogracca'));}
  
-    public function edit($id)
-    {
+    public function edit($id){
         $depositogracca = Depositogracca::find($id);
-
-        return view('depositogracca.edit', compact('depositogracca'));
-    }
-
+        return view('depositogracca.edit', compact('depositogracca'));}
  
-    public function update(Request $request, Depositogracca $depositogracca)
-    {
+    public function update(Request $request, Depositogracca $depositogracca){
         request()->validate(Depositogracca::$rules);
-
         $depositogracca->update($request->all());
-
         return redirect()->route('depositogracca.index')
-            ->with('success', 'Depositogracca updated successfully');
-    }
+            ->with('success', 'Depositogracca updated successfully');}
 
-
-    public function destroy($id)
-    {
+    public function destroy($id){
         $depositogracca = Depositogracca::find($id)->delete();
-
         return redirect()->route('depositogracca.index')
-            ->with('success', 'Depositogracca deleted successfully');
-    }
+            ->with('success', 'Depositogracca deleted successfully');}
+
+    public function agregarAfactura( ){
+        
+        return view('depositogracca.indexfactura');}
+
 }
