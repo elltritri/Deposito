@@ -64,8 +64,21 @@ class HomeController extends Controller
         $producto =  $request->producto;
         $modelo   =  $request->modelo;  
         $factura =  $request->factura;
+
+        // $primera= DB::table('boms')
+		// ->join('listadofacturas','partCode','=','listadofacturas.partCode')
+		// ->select('partCode')
+		// ->where('partCode','null')
+		// ->get();
+        // $segunda= DB::table('listadofacturas')
+		// ->join('boms','partCode','=','boms.partCode')
+		// ->select('listadofacturas')
+		// ->where('partCode','null')
+		// ->union($primera)
+		// ->get();
+
         // $consulta = DB::table('boms')->select('partCode','partName','cantidad')->where('producto','=',$producto)->where('modelo','=',$modelo);
-        return view('admin.comparacionBF', compact('producto'));
+        return view('admin.comparacionBF', compact('producto','modelo','factura'));
     }
 
     public function indexproducto()

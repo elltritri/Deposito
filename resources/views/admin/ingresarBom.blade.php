@@ -33,10 +33,8 @@
                                     </div>
                                     <div class="col-sm-3 mt-4" style="float: left">
                                         <label for="">Producto:</label>
-                                        <input type="text" name="producto" id="producto" class="form-control" placeholder="Ingrese el Producto"  required>
-                                        @if(Session::has('message'))
-                                            <p style="color: red">{!! Session::get('message') !!}</p>
-                                        @endif
+                                        {{ Form::select('producto', $producto ,null, ['class' => 'form-control' . ($errors->has('producto') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el Producto']) }}
+                                        {!! $errors->first('Producto', '<div class="invalid-feedback">:message</p>') !!}
                                     </div>
                                     <div class="col-sm-3 mt-4" style="float: left">
                                         <label for="">Modelo:</label>
@@ -52,13 +50,13 @@
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
                                     </div>
-                                    <div class="col-sm-3 mt-4" style="float: left">
+                                    {{-- <div class="col-sm-3 mt-4" style="float: left">
                                         <label for="">Lote:</label>
                                         <input type="number" name="lote" id="lote" class="form-control" placeholder="Ingrese la cantidad" required>
                                         @if(Session::has('message'))
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     
                                 </div>
                             </div>

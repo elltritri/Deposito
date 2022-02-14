@@ -29,6 +29,8 @@
                                     </thead>
                                     <tbody>
                                         <a href="">{{ $producto }}</a>
+                                        <a href="">{{ $modelo }}</a>
+                                        <a href="">{{ $factura }}</a>
                                         {{-- @foreach ($consulta as $fil)
                                             <tr>
                                                 <td>{{ $fil->partCode }}</td>

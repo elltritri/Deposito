@@ -3,9 +3,8 @@
 
 @section('content')
 <div class="col-sm-12 mt-4">
+    
     <div class="container-fluid">
-        
-            
         <div class="col-sm-12 mt-4">
                 <div class="card">
                     <div class="card-body" style="text-align: center">
@@ -14,42 +13,45 @@
                                 @csrf
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-sm-4 mt-4">
-                                                <div class="col-sm-6" style="float: left">
+                                            <div class="col-sm-3 mt-4">
+                                                
                                                     <label for="">Ingrese Producto</label>
                                                     {!! Form::select('producto', $producto, $producto, ['class' => 'form-control' ]) !!}
                                                     @if(Session::has('message'))
                                                         <p style="color: red">{!! Session::get('message') !!}</p>
                                                     @endif
-                                                </div>
+                                                
                                             </div>
-                                            <div class="col-sm-4 mt-4">
-                                                <div class="col-sm-6" style="float: left">
+                                            <div class="col-sm-3 mt-4">
+                                                
                                                     <label for="">Ingrese Modelo</label>
                                                     {!! Form::select('modelo', $modelo, null, ['class' => 'form-control' ]) !!}
                                                     @if(Session::has('message'))
                                                         <p style="color: red">{!! Session::get('message') !!}</p>
                                                     @endif
-                                                </div>
+                                                
                                             </div>
-                                            <div class="col-sm-4 mt-4">    
+                                            <div class="col-sm-3 mt-4">    
                                                 <label for="">Ingrese N° Factura</label>
                                                     {!! Form::select('numeroFactura', $factura, null, ['class' => 'form-control' ]) !!}
                                                     @if(Session::has('message'))
                                                         <p style="color: red">{!! Session::get('message') !!}</p>
                                                     @endif
                                             </div>
+                                            {{-- <div class="col-sm-3 mt-4">    
+                                                <label for="">Ingrese N° Bom</label>
+                                                    {!! Form::select('numeroFactura', $bom, null, ['class' => 'form-control' ]) !!}
+                                                    @if(Session::has('message'))
+                                                        <p style="color: red">{!! Session::get('message') !!}</p>
+                                                    @endif
+                                            </div> --}}
                                             <div class="col-sm-12 mt-4">
                                                 <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
                                             </div>
                                         </div>
                                     </div>  
-
-                                
                             </form>
                         </div>
-
-                        
                     </div>
                 </div>    
         </div>
