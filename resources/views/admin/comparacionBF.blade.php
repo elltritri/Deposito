@@ -9,7 +9,7 @@
         <div class="row">
             
             <div class="col-sm-6 mt-4">
-                <H1> BOM</H1>
+                <H1> RESULTADO COMPARACION</H1>
                 <div class="card" style="text-align: center">
                     <div>
                         <div class="card-body">
@@ -28,22 +28,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <a href="">{{ $producto }}</a>
-                                        <a href="">{{ $modelo }}</a>
-                                        <a href="">{{ $factura }}</a>
-                                        {{-- @foreach ($consulta as $fil)
+                                        
+                                        {{-- {{ $segunda}} --}}
+                                        
+                                        @foreach ($segunda as $fil)
                                             <tr>
                                                 <td>{{ $fil->partCode }}</td>
                                                 <td>{{ $fil->partName }}</td>
-                                                <td>{{ $fil->cantidad }}</td> --}}
-                                                {{-- <td>{{ $fil->codigoAlternativo }}</td> --}}
-                                                {{-- <td>{{ $fil->partName }}</td> --}}
-                                                {{-- <td>{{ $fil->descripcion }}</td> --}}
-                                                {{-- <td>{{ $fil->cantidad }}</td> --}}
-                                                {{-- <td>{{ $fil->origen }}</td> --}}
+                                                <td>{{ $fil->cantidad }}</td> 
+                                                {{-- <td>{{ $fil->codigoAlternativo }}</td>
+                                                <td>{{ $fil->partName }}</td>
+                                                <td>{{ $fil->descripcion }}</td>
+                                                <td>{{ $fil->cantidad }}</td>
+                                                <td>{{ $fil->origen }}</td> --}}
                                             
-                                            {{-- </tr>
-                                        @endforeach --}}
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 

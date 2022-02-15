@@ -3,61 +3,39 @@
 
 @section('content')
 <div class="col-sm-12 mt-4">
-    
     <div class="container-fluid">
         <div class="col-sm-12 mt-4">
-                <div class="card">
-                    <div class="card-body" style="text-align: center">
-                        <div class="col-auto">
-                            <form action="{{ route('admin.compararDatosingenieria') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-3 mt-4">
-                                                
-                                                    <label for="">Ingrese Producto</label>
-                                                    {!! Form::select('producto', $producto, $producto, ['class' => 'form-control' ]) !!}
-                                                    @if(Session::has('message'))
-                                                        <p style="color: red">{!! Session::get('message') !!}</p>
-                                                    @endif
-                                                
-                                            </div>
-                                            <div class="col-sm-3 mt-4">
-                                                
-                                                    <label for="">Ingrese Modelo</label>
-                                                    {!! Form::select('modelo', $modelo, null, ['class' => 'form-control' ]) !!}
-                                                    @if(Session::has('message'))
-                                                        <p style="color: red">{!! Session::get('message') !!}</p>
-                                                    @endif
-                                                
-                                            </div>
-                                            <div class="col-sm-3 mt-4">    
-                                                <label for="">Ingrese N° Factura</label>
-                                                    {!! Form::select('numeroFactura', $factura, null, ['class' => 'form-control' ]) !!}
-                                                    @if(Session::has('message'))
-                                                        <p style="color: red">{!! Session::get('message') !!}</p>
-                                                    @endif
-                                            </div>
-                                            {{-- <div class="col-sm-3 mt-4">    
-                                                <label for="">Ingrese N° Bom</label>
-                                                    {!! Form::select('numeroFactura', $bom, null, ['class' => 'form-control' ]) !!}
-                                                    @if(Session::has('message'))
-                                                        <p style="color: red">{!! Session::get('message') !!}</p>
-                                                    @endif
-                                            </div> --}}
-                                            <div class="col-sm-12 mt-4">
-                                                <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
-                                            </div>
+            <div class="card">
+                <div class="card-body" style="text-align: center">
+                    <div class="col-auto">
+                        <form action="{{ route('admin.compararDatosingenieria') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3 mt-4">
+                                            <label for="">Ingrese Boms</label>
+                                            {!! Form::select('boms', $boms, null, ['class' => 'form-control' ]) !!}
+                                            @if(Session::has('message'))
+                                                <p style="color: red">{!! Session::get('message') !!}</p>
+                                                @endif
                                         </div>
-                                    </div>  
-                            </form>
-                        </div>
+                                        <div class="col-sm-3 mt-4">    
+                                            <label for="">Ingrese N° Factura</label>
+                                                {!! Form::select('numeroFactura', $factura, null, ['class' => 'form-control' ]) !!}
+                                                @if(Session::has('message'))
+                                                    <p style="color: red">{!! Session::get('message') !!}</p>
+                                                @endif
+                                        </div>
+                                        <div class="col-sm-12 mt-4">
+                                            <input type="submit" value="Comparar" class="btn btn-sm btn-primary ">
+                                        </div>
+                                    </div>
+                                </div>  
+                        </form>
                     </div>
-                </div>    
+                </div>
+            </div>    
         </div>
-
-        
-        
     </div>
 </div>
 @endsection

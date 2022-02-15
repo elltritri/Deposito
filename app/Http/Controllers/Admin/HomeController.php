@@ -54,31 +54,54 @@ class HomeController extends Controller
             $bom = Bom::all();
             return view('admin.comparar', compact('bom'));
             }
+
     public function compararBF(){
-        $producto = DB::table('boms')->select('producto')->groupby('producto')->pluck('producto'); 
-        $modelo = DB::table('boms')->select('modelo')->groupby('modelo')->pluck('modelo');
-        $factura=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura',);
-        return view('admin.compararBF', compact('factura','modelo','producto'));
+        $boms = DB::table('boms')->select('id_boms')->groupby('id_boms')->pluck('id_boms','id_boms');
+        $factura=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura','numeroFactura');
+        return view('admin.compararBF', compact('factura','boms'));
         }
+
     public function compararDatosingenieria(Request $request){
-        $producto =  $request->producto;
-        $modelo   =  $request->modelo;  
-        $factura =  $request->factura;
+        
+        $boms   =  $request->boms;  
+        $factura =  $request->numeroFactura;
+        
+        // $primera = DB::table('boms')
+        //             ->join('listadofacturas', function ($join) {
+        //                 $join   ->on('listadofacturas.partCode', '=', 'boms.partCode')
+        //                          ->where('boms.partCode','<>', 'listadofacturas.partCode');
+        //                 })
+        //             ->where('boms.id_boms','=',$boms)
+        //             ;
+        // $segunda = DB::table('listadofacturas')
+        //             ->join('boms', function ($join) {
+        //                 $join   ->on('boms.partCode', '=', 'listadofacturas.partCode')
+        //                          ->where('listadofacturas.partCode','<>','boms.partCode');
+        //                 })
+        //             ->where('listadofacturas.numeroFactura','=',$factura)
+        //             ->union($primera)
+        //             ->get()
+        //             ;
 
-        // $primera= DB::table('boms')
-		// ->join('listadofacturas','partCode','=','listadofacturas.partCode')
-		// ->select('partCode')
-		// ->where('partCode','null')
-		// ->get();
-        // $segunda= DB::table('listadofacturas')
-		// ->join('boms','partCode','=','boms.partCode')
-		// ->select('listadofacturas')
-		// ->where('partCode','null')
-		// ->union($primera)
-		// ->get();
+        // $primera = DB::table('boms')
+        //             ->leftjoin('listadofacturas','boms.partCode','=','listadofacturas.partCode')
+        //             ->where('listadofacturas.partCode','is',null)
+        //             ->where('id_boms','=',$boms);
 
-        // $consulta = DB::table('boms')->select('partCode','partName','cantidad')->where('producto','=',$producto)->where('modelo','=',$modelo);
-        return view('admin.comparacionBF', compact('producto','modelo','factura'));
+        // $segunda = DB::table('listadofacturas')
+        //             ->leftjoin('boms','listadofacturas.partCode','=','boms.partCode')
+        //             ->where('boms.partCode','is',null)
+        //             ->where('numeroFactura','=',$factura)
+        //             ->union($primera)
+        //             ->get();   
+        
+        $sql='select * from boms A LEFT OUTER JOIN listadofacturas B on A.partCode = B.partCode Where B.partCode IS NULL and A.id_boms='.$boms.' 
+        UNION 
+        select * from listadofacturas A LEFT OUTER JOIN boms B on A.partCode = B.partCode Where B.partCode IS NULL and A.numeroFactura = '.$factura;
+        $segunda = DB::select($sql);
+
+
+        return view('admin.comparacionBF', compact('segunda'));
     }
 
     public function indexproducto()
