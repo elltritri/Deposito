@@ -37,7 +37,7 @@ Route::get('imprimir',[HomeController::class, 'imprimir'])->name('admin.imprimir
 Route::resource('producto',App\Http\Controllers\ProductoController::class)->names('producto');
 
 Route::resource('depositogracca',App\Http\Controllers\DepositograccaController::class)->names('depositogracca');
-Route::get('agregar',[App\Http\Controllers\DepositograccaController::class, 'agregarAfactura'])->name('depositogracca.agregar');
+Route::get('agregaradepositogracca',[App\Http\Controllers\DepositograccaController::class, 'agregaradepositogracca'])->name('depositogracca.agregar');
 
 
 

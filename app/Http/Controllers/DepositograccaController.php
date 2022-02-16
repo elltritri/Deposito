@@ -26,8 +26,9 @@ class DepositograccaController extends Controller {
         return view('depositogracca.show', compact('depositogracca'));}
  
     public function edit($id){
-        $depositogracca = Depositogracca::find($id);
-        return view('depositogracca.edit', compact('depositogracca'));}
+        $nrofactura = DB::table('listadofacturas')->select('numeroFactura')->where('id','=',$id);
+        $factura = DB::table('listadofacturas')->where('numeroFactura','=',$nrofactura);
+        return view('depositogracca.indexfactura', compact('factura'));}
  
     public function update(Request $request, Depositogracca $depositogracca){
         request()->validate(Depositogracca::$rules);
@@ -40,7 +41,7 @@ class DepositograccaController extends Controller {
         return redirect()->route('depositogracca.index')
             ->with('success', 'Depositogracca deleted successfully');}
 
-    public function agregarAfactura( ){
+    public function agregaradepositogracca($id){
         
         return view('depositogracca.indexfactura');}
 

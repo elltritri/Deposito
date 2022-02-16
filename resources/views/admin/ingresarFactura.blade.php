@@ -80,10 +80,10 @@
 
 @section('js')
 <script>
-var myCollapsible = document.getElementById('myCollapsible')
-myCollapsible.addEventListener('hidden.bs.collapse', function () {
-  // do something...
-})
+        var myCollapsible = document.getElementById('myCollapsible')
+        myCollapsible.addEventListener('hidden.bs.collapse', function () {
+        // do something...
+        })
 </script>
 @endsection
 

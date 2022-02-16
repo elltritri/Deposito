@@ -299,7 +299,7 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text'        => 'Gracca',
+                    'text'        => 'Agregar a Gracca',
                     'url'         => 'depositogracca',
                     'icon'        => 'far fa-fw fa-file',
                 ],  

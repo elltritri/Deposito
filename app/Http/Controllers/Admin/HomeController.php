@@ -66,42 +66,16 @@ class HomeController extends Controller
         $boms   =  $request->boms;  
         $factura =  $request->numeroFactura;
         
-        // $primera = DB::table('boms')
-        //             ->join('listadofacturas', function ($join) {
-        //                 $join   ->on('listadofacturas.partCode', '=', 'boms.partCode')
-        //                          ->where('boms.partCode','<>', 'listadofacturas.partCode');
-        //                 })
-        //             ->where('boms.id_boms','=',$boms)
-        //             ;
-        // $segunda = DB::table('listadofacturas')
-        //             ->join('boms', function ($join) {
-        //                 $join   ->on('boms.partCode', '=', 'listadofacturas.partCode')
-        //                          ->where('listadofacturas.partCode','<>','boms.partCode');
-        //                 })
-        //             ->where('listadofacturas.numeroFactura','=',$factura)
-        //             ->union($primera)
-        //             ->get()
-        //             ;
-
-        // $primera = DB::table('boms')
-        //             ->leftjoin('listadofacturas','boms.partCode','=','listadofacturas.partCode')
-        //             ->where('listadofacturas.partCode','is',null)
-        //             ->where('id_boms','=',$boms);
-
-        // $segunda = DB::table('listadofacturas')
-        //             ->leftjoin('boms','listadofacturas.partCode','=','boms.partCode')
-        //             ->where('boms.partCode','is',null)
-        //             ->where('numeroFactura','=',$factura)
-        //             ->union($primera)
-        //             ->get();   
-        
-        $sql='select * from boms A LEFT OUTER JOIN listadofacturas B on A.partCode = B.partCode Where B.partCode IS NULL and A.id_boms='.$boms.' 
-        UNION 
-        select * from listadofacturas A LEFT OUTER JOIN boms B on A.partCode = B.partCode Where B.partCode IS NULL and A.numeroFactura = '.$factura;
+        $sql =  'SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.' 
+                UNION 
+                SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'';
+       
         $segunda = DB::select($sql);
 
-
-        return view('admin.comparacionBF', compact('segunda'));
+        
+            return view('admin.comparacionBF',compact('segunda','factura','boms'));
+        
+        
     }
 
     public function indexproducto()

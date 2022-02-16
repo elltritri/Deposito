@@ -43,23 +43,21 @@
                                 <tbody>
                                     @foreach ($depositograccas as $depositogracca)
                                         <tr>
-                                            <td>{{ $depositogracca->id }}</td>
+                                            {{-- <td>{{ $depositogracca->id }}</td> --}}
 											<td>{{ $depositogracca->guia }}</td>
 											<td>{{ $depositogracca->numeroFactura }}</td>
 											<td>{{ $depositogracca->producto }}</td>
 											<td>{{ $depositogracca->modelo }}</td>
                                             <td>
                                                 
-                                                <a href="{{ route('depositogracca.agregar') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                                    {{ __('Agregar Detalle') }}
-                                                  </a>
-                                                {{-- <form action="{{ route('depositogracca.destroy',$depositogracca->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.factura',$depositogracca->id) }}"><i class="fa fa-fw fa-eye"></i> Agregar</a>
+                                             
+                                                 <form action="{{ route('depositogracca.destroy',$depositogracca->id) }}" method="POST"> 
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.agregar',$depositogracca->id) }}"><i class="fa fa-fw fa-eye"></i> Agregar</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('depositogracca.edit',$depositogracca->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form> --}}
+                                                </form> 
                                             </td>
                                         </tr>
                                     @endforeach
