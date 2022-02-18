@@ -231,25 +231,7 @@ return [
             'text'    => 'Ingenieria',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
-                [
-                    'text'        => 'Producto',
-                    'icon'        => 'far fa-fw fa-file',
-                    'icon_color' => 'blue',
-                    'submenu' =>[
-                        [
-                            'text'        => 'Ingresar Producto',
-                            'url'         => 'producto',
-                            'icon'        => 'far fa-fw fa-file',
-                            'icon_color' => 'blue',
-                        ],
-                        [
-                            'text'        => 'Listado Productos',
-                            // 'url'         => 'admin/mostrarBom',
-                            'icon'        => 'far fa-fw fa-file',
-                            'icon_color' => 'blue',
-                        ],   
-                    ]
-                ],
+                
                 [
                     'text'        => 'Bom',
                     'url'         => '',
@@ -299,20 +281,62 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text'        => 'Agregar a Gracca',
-                    'url'         => 'depositogracca',
-                    'icon'        => 'far fa-fw fa-file',
-                ],  
-                [
-                    'text'        => 'Listado',
-                    'url'         => '',
-                    'icon'        => 'far fa-fw fa-file',
+                    'text'    => 'Gracca',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'submenu' => [
+                        [
+                            'text'        => 'Ingreso a Deposito',
+                            'url'         => 'depositogracca',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],  
+                        [
+                            'text'        => 'Listado de Deposito',
+                            'url'         => '',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],
+                        [
+                            'text'        => 'Comparar con PPL',
+                            'url'         => 'admin/comparar',
+                            'icon'        => 'far fa-fw fa-file',
+                        ],
+                    ],
                 ],
+                
+            ],
+        ],
+        [
+            'text'    => 'Sistema',
+            'font_color'     => 'blue',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
                 [
-                    'text'        => 'Comparar',
-                    'url'         => 'admin/comparar',
+                    'text'        => 'Producto',
                     'icon'        => 'far fa-fw fa-file',
+                    'icon_color' => 'blue',
+                    
+                    'submenu' =>[
+                        [
+                            'text'        => 'Ingresar Producto',
+                            'url'         => 'producto',
+                            'icon'        => 'far fa-fw fa-file',
+                            'icon_color' => 'blue',
+                        ],
+                        [
+                            'text'        => 'Listado Productos',
+                            'url'         => 'admin/mostrarBom',
+                            'icon'        => 'far fa-fw fa-file',
+                            'icon_color' => 'blue',
+                        ], 
+                        [
+                            'text'        => 'Estados Productos',
+                            'url'         => 'admin/mostrarBom',
+                            'icon'        => 'far fa-fw fa-file',
+                            'icon_color' => 'blue',
+                        ],   
+                    ]
                 ],
+                
+                
             ],
         ],
     ],

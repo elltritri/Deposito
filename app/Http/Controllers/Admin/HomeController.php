@@ -66,14 +66,32 @@ class HomeController extends Controller
         $boms   =  $request->boms;  
         $factura =  $request->numeroFactura;
         
-        $sql =  'SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.' 
-                UNION 
-                SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'';
-       
-        $segunda = DB::select($sql);
+        // $sql =  'SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.' 
+        //         UNION 
+        //         SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'';
 
+        // $segunda = DB::select($sql);        
+        $sql1 =  'SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.'';
+        $primera = DB::select($sql1);
+        $sql2 = 'SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'';
+        $segunda = DB::select($sql2);
+
+        // $primera = DB::table('boms as T1')
+        //         ->selectRaw('T1.*')
+        //         ->selectRaw('T2.*')
+        //         ->leftJoin('listadofacturas as T2', 'T1.partCode', '=', 'T2.partCode')
+        //         ->whereNull('T2.partCode')
+        //         ->where('T1.id_boms', $boms);
+        // $definitiva = DB::table('listadofacturas as T2')
+        //         ->selectRaw('T1.*')
+        //         ->selectRaw('T2.*')
+        //         ->leftJoin('boms as T1', 'T2.partCode', '=', 'T1.partCode')
+        //         ->whereNull('T1.partCode')
+        //         ->where('T2.numeroFactura', $factura);
         
-            return view('admin.comparacionBF',compact('segunda','factura','boms'));
+        // $segunda = $primera->union($definitiva)->get();
+        
+            return view('admin.comparacionBF',compact('primera','segunda','factura','boms'));
         
         
     }

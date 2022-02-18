@@ -44,8 +44,8 @@ class BomController extends Controller
         return view('admin.mostrarBom',compact('listabom'));
         }
 
-    public function mostrarDatosBom(){
-        $listabom = bom::all();
+    public function mostrarDatosBom($id_boms){
+        $listabom = DB::table('boms')->where('id_boms','=',$id_boms)->get();
         return view('admin.mostrarDatosBom', compact('listabom'));
         }
 }

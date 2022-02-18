@@ -32,7 +32,7 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        
 										<th>Guia</th>
 										<th>Numerofactura</th>
 										<th>Producto</th>
@@ -51,13 +51,13 @@
                                             <td>
                                                 
                                              
-                                                 <form action="{{ route('depositogracca.destroy',$depositogracca->id) }}" method="POST"> 
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.agregar',$depositogracca->id) }}"><i class="fa fa-fw fa-eye"></i> Agregar</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('depositogracca.edit',$depositogracca->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                 {{-- <form action="{{ route('depositogracca.destroy',$depositogracca->id) }}" method="POST">  --}}
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.agregar',$depositogracca->numeroFactura) }}"><i class="fa fa-fw fa-eye"></i>Ingreso</a>
+                                                    {{-- <a class="btn btn-sm btn-success" href="{{ route('depositogracca.edit',$depositogracca->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form> 
+                                                </form>  --}}
                                             </td>
                                         </tr>
                                     @endforeach

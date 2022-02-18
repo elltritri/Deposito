@@ -35,7 +35,7 @@
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
                                                 <td> <form  method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{route('admin.mostrarDatosBom', $fil->id)}}"><i class="fa fa-fw fa-eye"></i> VER</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{route('admin.mostrarDatosBom', $fil->id_boms)}}"><i class="fa fa-fw fa-eye"></i> VER</a>
                                                     
                                                     @csrf
                                                     {{-- @method('DELETE') --}}

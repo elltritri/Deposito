@@ -23,12 +23,17 @@ class DepositograccaController extends Controller {
 
     public function show($id){
         $depositogracca = Depositogracca::find($id);
-        return view('depositogracca.show', compact('depositogracca'));}
+        return view('depositogracca.show', 
+                            compact('depositogracca'));}
  
     public function edit($id){
-        $nrofactura = DB::table('listadofacturas')->select('numeroFactura')->where('id','=',$id);
-        $factura = DB::table('listadofacturas')->where('numeroFactura','=',$nrofactura);
-        return view('depositogracca.indexfactura', compact('factura'));}
+        $nrofactura = DB::table('listadofacturas')
+                            ->select('numeroFactura')
+                            ->where('id','=',$id);
+        $factura = DB::table('listadofacturas')
+                            ->where('numeroFactura','=',$nrofactura);
+        return view('depositogracca.indexfactura', 
+                            compact('factura'));}
  
     public function update(Request $request, Depositogracca $depositogracca){
         request()->validate(Depositogracca::$rules);
@@ -41,8 +46,15 @@ class DepositograccaController extends Controller {
         return redirect()->route('depositogracca.index')
             ->with('success', 'Depositogracca deleted successfully');}
 
-    public function agregaradepositogracca($id){
+    public function agregaradepositogracca($numeroFactura){
+        $factura=$numeroFactura;
+        $guia= DB::table('listadofacturas')->select('guia')->where('numeroFactura','=',$numeroFactura)->groupby('guia')->get();
+        $producto= DB::table('listadofacturas')->select('producto')->where('numeroFactura','=',$numeroFactura)->groupby('producto')->get();
+        $modelo= DB::table('listadofacturas')->select('modelo')->where('numeroFactura','=',$numeroFactura)->groupby('modelo')->get();
+
+
+        return view('depositogracca.indexfactura', compact('factura','guia','producto','modelo'))
         
-        return view('depositogracca.indexfactura');}
+        ;}
 
 }

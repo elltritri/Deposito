@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="card" style="text-align: center">
+    {{-- <div class="card" style="text-align: center">
         <div>
             <div style="text-align: center">
                 <div class="col-sm-4 mt-4" style="float: left">
@@ -30,13 +30,47 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 mt-4">
+            <div class="col-sm-6 mt-4">
                 
                 <div class="card" style="text-align: center">
+                    <div style="text-align: center">
+                        <h1>Resultado Boms N°: {{ $boms }}</h1>
+                    </div>
+                    <div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="tabla1" class="table table-striped table-hover">
+                                    <thead class="thead">
+                                        <tr>
+                                            <th>Par Code</th>
+                                            <th>Part Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{-- {{ $segunda}} --}}
+                                        @foreach ($primera as $fil)
+                                            <tr>
+                                                <td>{{ $fil->partCode }}</td>
+                                                <td>{{ $fil->partName }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <div class="col-sm-6 mt-4">
+                
+                <div class="card" style="text-align: center">
+                    <div style="text-align: center">
+                        <h1>Resultado Factura N°:{{ $factura }}</h1>
+                    </div>
                     <div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -62,6 +96,7 @@
                     </div>
                 </div>    
             </div>
+            
         </div>
     </div>
 </div>
@@ -285,6 +320,9 @@
             a("<li>",{"class":C.sPageButton+" "+k,id:0===A&&"string"===typeof g?f.sTableId+"_"+g:null}).append(a("<a>",{href:"#","aria-controls":f.sTableId,"aria-label":D[g],"data-dt-idx":v,tabindex:f.iTabIndex,"class":"page-link"}).html(h)).appendTo(q);f.oApi._fnBindAction(F,{action:g},E);v++}}}};try{var z=a(l).find(c.activeElement).data("dt-idx")}catch(q){}y(a(l).empty().html('<ul class="pagination"/>').children("ul"),B);z!==e&&a(l).find("[data-dt-idx="+z+"]").trigger("focus")};return d});
     </script>
     <script>
+         $(document).ready(function() {
+            $('#tabla1').DataTable();
+        } );
         $(document).ready(function() {
             $('#tabla2').DataTable();
         } );
