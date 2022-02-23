@@ -9,7 +9,7 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Listado de Facturas</h1>
+                            <h1>Listado de PPL</h1>
                         </div>
                         
                     </div>

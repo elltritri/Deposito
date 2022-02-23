@@ -46,15 +46,37 @@ class DepositograccaController extends Controller {
         return redirect()->route('depositogracca.index')
             ->with('success', 'Depositogracca deleted successfully');}
 
+    
     public function agregaradepositogracca($numeroFactura){
+
         $factura=$numeroFactura;
         $guia= DB::table('listadofacturas')->select('guia')->where('numeroFactura','=',$numeroFactura)->groupby('guia')->get();
         $producto= DB::table('listadofacturas')->select('producto')->where('numeroFactura','=',$numeroFactura)->groupby('producto')->get();
         $modelo= DB::table('listadofacturas')->select('modelo')->where('numeroFactura','=',$numeroFactura)->groupby('modelo')->get();
+        $productos = DB::table('depositograccas')->where('numeroFactura','=',$numeroFactura)->GET();
 
-
-        return view('depositogracca.indexfactura', compact('factura','guia','producto','modelo'))
-        
+        return view('depositogracca.indexfactura', compact('factura','guia','producto','modelo','productos'))
         ;}
+ 
+    public function ingresoproducto(Request $request){
+        
+        
 
+        $Ingreso = new Depositogracca;
+
+        $Ingreso->guia = $request->input('guia');
+        $Ingreso->numeroFactura = $request->input('numeroFactura');
+        $Ingreso->producto = $request->input('producto');
+        $Ingreso->modelo = $request->input('modelo');
+        $Ingreso->partCode = $request->input('partCode');
+        $Ingreso->cantidad = $request->input('cantidad');
+        
+
+
+        $Ingreso->save();
+        return response()->json($Ingreso);
+
+        
+
+    ;}
 }

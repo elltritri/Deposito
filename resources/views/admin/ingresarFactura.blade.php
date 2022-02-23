@@ -6,65 +6,58 @@
         <div class="row">
             <div class="col-sm-12 mt-4">
                 <div class="card" style="text-align: center">
-                    <div>
-                        <div style="text-align: center">
-                            <h1>Ingreso de Facturas</h1>
-                        </div>
+                    <div style="text-align: center">
+                        <h1>Ingreso de PPL</h1>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="col-auto">
-                        <form action="{{ route('admin.ingresarDatosFactura') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                            <div class="card-body">
-                                 
-                                <div>
-                                    <div class="col-sm-6" style="float: left">
+                            <form action="{{ route('admin.ingresarDatosFactura') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="card-body">
+                                    <div class="col-sm-3" style="float: left">
                                         <label for="">N° Factura :</label>
                                         <input type="text" name="numeroFactura" id="numeroFactura" class="form-control" placeholder="Ingrese N° de Factura"  required>
                                         @if(Session::has('message'))
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
                                     </div>
-                                    <div class="col-sm-6" style="float: left">
+                                    <div class="col-sm-3" style="float: left">
                                         <label for="">N° Guia</label>
                                         <input type="text" name="guia" id="guia" class="form-control" placeholder="Ingrese N° de Guia"  required>
                                         @if(Session::has('message'))
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="col-sm-6 mt-4" style="float: left">
+                                    <div class="col-sm-3" style="float: left">
                                         <label for="">Producto:</label>
-                                        <input type="text" name="producto" id="producto" class="form-control" placeholder="Ingrese el Producto"  required>
-                                        @if(Session::has('message'))
-                                            <p style="color: red">{!! Session::get('message') !!}</p>
-                                        @endif
+                                        {{ Form::select('producto', $producto ,null, ['class' => 'form-control' . ($errors->has('producto') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el Producto']) }}
+                                        {!! $errors->first('Producto', '<div class="invalid-feedback">:message</p>') !!}
                                     </div>
-                                    <div class="col-sm-6 mt-4" style="float: left">
+                                    <div class="col-sm-3" style="float: left">
                                         <label for="">Modelo:</label>
                                         <input type="text" name="modelo" id="modelo" class="form-control" placeholder="Ingrese el Modelo" required>
                                         @if(Session::has('message'))
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
                                     </div>
+                                </div>  
+                                <div class="card-body">
+                                    <div class="col-sm-4" style="text-align: center; float: left;">
+                                        <label for="formFile">Lote</label>
+                                        <input class="form-control" type="number" id="lote" name="lote" placeholder="Ingrese el Lote">
+                                    </div> 
+                                    <div class="col-sm-4" style="text-align: center; float: left; ">
+                                        <label for="formFile">Seleccione el Packing List</label>
+                                        <input class="form-control" type="file" id="file" name="file">
+                                    </div> 
+                                    <div class="col-sm-4 mt-4" style="text-align: center; float: left;">
+                                        <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
+                                    </div>
                                 </div>
-                            </div>
-                            </p>
-                            <div class="col-sm-12" style="text-align: center">
-                                <label for="formFile">Seleccione el Packing List</label>
-                                {{-- <input type="file" name="file" class="btn btn-sm btn-primary" required> --}}
-                                <input class="form-control" type="file" id="file" name="file">
-                            </div> 
-                                                          
-                            <div class="col-sm-12 mt-4" style="text-align: center">
-                                <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
-                            </div>  
-
-                            
-                        </form>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>    

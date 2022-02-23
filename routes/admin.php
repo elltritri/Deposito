@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\BomController;
 use App\Http\Controllers\ListadofacturaController;
+use App\Http\Controllers\DepositograccaController;
 
 
 
@@ -36,8 +37,11 @@ Route::get('imprimir',[HomeController::class, 'imprimir'])->name('admin.imprimir
 
 Route::resource('producto',App\Http\Controllers\ProductoController::class)->names('producto');
 
-Route::resource('depositogracca',App\Http\Controllers\DepositograccaController::class)->names('depositogracca');
-Route::get('agregaradepositogracca/{numeroFactura}',[App\Http\Controllers\DepositograccaController::class, 'agregaradepositogracca'])->name('depositogracca.agregar');
+Route::resource('depositogracca',DepositograccaController::class)->names('depositogracca');
+Route::get('agregaradepositogracca/{numeroFactura}',[DepositograccaController::class, 'agregaradepositogracca'])->name('depositogracca.agregar');
+Route::post('ingresoproducto',[DepositograccaController::class, 'ingresoproducto'])->name('depositogracca.ingresoproducto');
+
+
 
 
 

@@ -226,76 +226,54 @@ return [
 
     'menu' => [
         // Sidebar items:
-        
-        [
-            'text'    => 'Ingenieria',
+        [   'text'    => 'INGENIERIA',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
-                
-                [
-                    'text'        => 'Bom',
+                [   'text'        => 'BOM',
                     'url'         => '',
                     'icon'        => 'far fa-fw fa-file',
                     'submenu' =>[
-                        [
-                            'text'        => 'Ingresar Bom KMG(faltabom)',
+                        [   'text'        => 'INGRESAR',
                             'url'         => 'ingresarBom',
                             'icon'        => 'far fa-fw fa-file',
                         ],
-                        [
-                            'text'        => 'Listado bom KMG(NG)',
+                        [   'text'        => 'LISTADO',
                             'url'         => 'mostrarBom',
                             'icon'        => 'far fa-fw fa-file',
                         ],
-                           
-                        
                     ]
                 ],
-                 
-                [
-                    'text'        => 'Factura',
+                [   'text'        => 'PPL',
                     'url'         => '',
                     'icon'        => 'far fa-fw fa-file',
                     'submenu'     =>[
-                        [
-                            'text'        => 'Ingresar Factura',
+                        [   'text'        => 'INGRESAR',
                             'url'         => 'ingresarFactura',
                             'icon'        => 'far fa-fw fa-file',
                         ],
-                        [
-                            'text'        => 'Listado Factura',
+                        [   'text'        => 'LISTADO',
                             'url'         => 'mostrarFactura',
                             'icon'        => 'far fa-fw fa-file',
                         ],
                     ]
                 ],
-                [
-                    'text'        => 'Compararacion de Ingeni',
+                [   'text'        => 'COMPARACION ING.',
                     'url'         => 'compararBF',
                     'icon'        => 'far fa-fw fa-file',
                 ],
             ],
         ],
-        [
-            'text'    => 'Deposito',
+        [   'text'    => 'DEPOSITO',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
-                [
-                    'text'    => 'Gracca',
+                [   'text'    => 'Gracca',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
-                        [
-                            'text'        => 'Ingreso a Deposito',
+                        [   'text'        => 'Ingreso a Deposito',
                             'url'         => 'depositogracca',
                             'icon'        => 'far fa-fw fa-file',
                         ],  
-                        [
-                            'text'        => 'Listado de Deposito',
-                            'url'         => '',
-                            'icon'        => 'far fa-fw fa-file',
-                        ],
-                        [
-                            'text'        => 'Comparar con PPL',
+                        [   'text'        => 'Comparar con PPL',
                             'url'         => 'admin/comparar',
                             'icon'        => 'far fa-fw fa-file',
                         ],
@@ -305,38 +283,25 @@ return [
             ],
         ],
         [
-            'text'    => 'Sistema',
+            'text'    => 'ADMINISTRADOR',
             'font_color'     => 'blue',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
-                [
-                    'text'        => 'Producto',
+                [   'text'        => 'Producto',
+                    'url'         => 'producto',
                     'icon'        => 'far fa-fw fa-file',
                     'icon_color' => 'blue',
-                    
-                    'submenu' =>[
-                        [
-                            'text'        => 'Ingresar Producto',
-                            'url'         => 'producto',
-                            'icon'        => 'far fa-fw fa-file',
-                            'icon_color' => 'blue',
-                        ],
-                        [
-                            'text'        => 'Listado Productos',
-                            'url'         => 'admin/mostrarBom',
-                            'icon'        => 'far fa-fw fa-file',
-                            'icon_color' => 'blue',
-                        ], 
-                        [
-                            'text'        => 'Estados Productos',
-                            'url'         => 'admin/mostrarBom',
-                            'icon'        => 'far fa-fw fa-file',
-                            'icon_color' => 'blue',
-                        ],   
-                    ]
                 ],
-                
-                
+                [   'text'        => 'Personal',
+                    'url'         => '',
+                    'icon'        => 'far fa-fw fa-file',
+                    'icon_color' => 'blue',
+                ],
+                [   'text'        => 'Deposito',
+                    'url'         => '',
+                    'icon'        => 'far fa-fw fa-file',
+                    'icon_color' => 'blue',
+                ],
             ],
         ],
     ],

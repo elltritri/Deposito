@@ -20,7 +20,7 @@
                                                 @endif
                                         </div>
                                         <div class="col-sm-3 mt-4">    
-                                            <label for="">Ingrese N° Factura</label>
+                                            <label for="">Ingrese N° PPL</label>
                                                 {!! Form::select('numeroFactura', $factura, null, ['class' => 'form-control' ]) !!}
                                                 @if(Session::has('message'))
                                                     <p style="color: red">{!! Session::get('message') !!}</p>

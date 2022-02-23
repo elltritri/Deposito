@@ -1,7 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('template_title')
-    Depositogracca
+    Factura
 @endsection
 
 @section('content')
@@ -13,11 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Depositogracca') }}
+                                {{ __('Factura') }}
                             </span>
 
                              <div class="float-right">
-                                
+                                <a href="{{ route('facturas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a>
                               </div>
                         </div>
                     </div>
@@ -29,35 +31,39 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="tabla1" class="table table-striped table-hover">
+                            <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
+                                        <th>No</th>
                                         
 										<th>Guia</th>
 										<th>Numerofactura</th>
 										<th>Producto</th>
 										<th>Modelo</th>
+										<th>Lote</th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($depositograccas as $depositogracca)
+                                    @foreach ($facturas as $factura)
                                         <tr>
-                                            {{-- <td>{{ $depositogracca->id }}</td> --}}
-											<td>{{ $depositogracca->guia }}</td>
-											<td>{{ $depositogracca->numeroFactura }}</td>
-											<td>{{ $depositogracca->producto }}</td>
-											<td>{{ $depositogracca->modelo }}</td>
+                                            <td>{{ ++$i }}</td>
+                                            
+											<td>{{ $factura->guia }}</td>
+											<td>{{ $factura->numeroFactura }}</td>
+											<td>{{ $factura->producto }}</td>
+											<td>{{ $factura->modelo }}</td>
+											<td>{{ $factura->lote }}</td>
+
                                             <td>
-                                                
-                                             
-                                                 {{-- <form action="{{ route('depositogracca.destroy',$depositogracca->id) }}" method="POST">  --}}
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.agregar',$depositogracca->numeroFactura) }}"><i class="fa fa-fw fa-eye"></i>Ingreso</a>
-                                                    {{-- <a class="btn btn-sm btn-success" href="{{ route('depositogracca.edit',$depositogracca->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('facturas.destroy',$factura->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('facturas.show',$factura->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('facturas.edit',$factura->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>  --}}
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -66,9 +72,8 @@
                         </div>
                     </div>
                 </div>
-                
+                {!! $facturas->links() !!}
             </div>
         </div>
     </div>
 @endsection
-
