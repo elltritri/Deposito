@@ -19,7 +19,7 @@ Route::get('mostrarFactura',[ListadofacturaController::class, 'mostrarFactura'])
 Route::get('mostrarDatosFactura/{numeroFactura}',[ListadofacturaController::class, 'mostrarDatosFactura'])->name('admin.mostrarDatosFactura');
 
 
-Route::get('ingresarBom',[BomController::class, 'ingresarBom']);
+Route::get('ingresarBom',[BomController::class, 'ingresarBom'])->name('admin.ingresarBom');
 Route::post('ingresarDatosBom',[BomController::class, 'ingresarDatosBom'])->name('admin.ingresarDatosBom');
 Route::get('mostrarBom',[BomController::class, 'mostrarBom'])->name('admin.mostrarBom');
 Route::get('mostrarDatosBom/{id_boms}',[BomController::class, 'mostrarDatosBom'])->name('admin.mostrarDatosBom');
@@ -38,6 +38,7 @@ Route::get('imprimir',[HomeController::class, 'imprimir'])->name('admin.imprimir
 Route::resource('producto',App\Http\Controllers\ProductoController::class)->names('producto');
 
 Route::resource('depositogracca',DepositograccaController::class)->names('depositogracca');
+Route::get('listadeposito',[DepositograccaController::class, 'listadeposito'])->name('depositogracca.listadeposito');
 Route::get('agregaradepositogracca/{numeroFactura}',[DepositograccaController::class, 'agregaradepositogracca'])->name('depositogracca.agregar');
 Route::post('ingresoproducto',[DepositograccaController::class, 'ingresoproducto'])->name('depositogracca.ingresoproducto');
 

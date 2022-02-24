@@ -56,11 +56,9 @@ class DepositograccaController extends Controller {
         $productos = DB::table('depositograccas')->where('numeroFactura','=',$numeroFactura)->GET();
 
         return view('depositogracca.indexfactura', compact('factura','guia','producto','modelo','productos'))
-        ;}
+    ;}
  
     public function ingresoproducto(Request $request){
-        
-        
 
         $Ingreso = new Depositogracca;
 
@@ -70,13 +68,16 @@ class DepositograccaController extends Controller {
         $Ingreso->modelo = $request->input('modelo');
         $Ingreso->partCode = $request->input('partCode');
         $Ingreso->cantidad = $request->input('cantidad');
-        
-
 
         $Ingreso->save();
         return response()->json($Ingreso);
-
-        
-
     ;}
+
+    public function listadeposito(){
+
+        $lista=DB::table('depositograccas')->get();
+
+        return view('depositogracca.listadoproducto', compact('lista'));
+        
+    }
 }

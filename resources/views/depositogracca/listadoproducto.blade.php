@@ -8,7 +8,7 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center;">
-                            <h1>Tabla Detalle BOMS</h1>
+                            <h1>Lista de Productos en Gracca</h1>
                         </div>
                         
                     </div>
@@ -22,10 +22,12 @@
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
+                                            <th>Guia</th>
+                                            <th>Nro Factura</th>
                                             <th>Part Code</th>
                                             <th>Part Cod. Alternativo</th>
                                             <th>Part Cod. Alternativo 2</th>
-                                            <th>Cod. Producto</th>
+                                            
                                             <th>Producto</th>
                                             <th>Modelo</th>
                                             <th>Part Name</th>
@@ -36,12 +38,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($listabom as $fil)
+                                        @foreach ($lista as $fil)
                                             <tr>
+                                                <td>{{ $fil->guia }}</td>
+                                                <td>{{ $fil->numeroFactura }}</td>
                                                 <td>{{ $fil->partCode }}</td>
                                                 <td>{{ $fil->codigoAlternativo }}</td>
                                                 <td>{{ $fil->codigoAlternativo }}</td>
-                                                <td>{{ $fil->codproducto }}</td>
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
                                                 <td>{{ $fil->partName }}</td>
