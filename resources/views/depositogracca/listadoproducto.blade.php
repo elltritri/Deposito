@@ -34,6 +34,7 @@
                                             <th>Descripcion</th>
                                             <th>Cantidad</th>
                                             <th>Origen</th>
+                                            <th>Fecha Vencimiento</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -51,6 +52,7 @@
                                                 <td>{{ $fil->descripcion }}</td>
                                                 <td>{{ $fil->cantidad }}</td>
                                                 <td>{{ $fil->origen }}</td>
+                                                <td>{{ $fil->fechaVencimiento }}</td>
                                                 <td>
                                                     <a class="btn btn-sm btn-primary "> Editar</a>
                                                 </td>

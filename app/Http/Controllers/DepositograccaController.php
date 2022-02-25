@@ -4,6 +4,7 @@ use App\Models\Depositogracca;
 use App\Models\Listadofactura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DepositograccaController extends Controller {
     
@@ -71,6 +72,19 @@ class DepositograccaController extends Controller {
 
         $Ingreso->save();
         return response()->json($Ingreso);
+    ;}
+
+    public function ingresoVencimiento(Request $request, $id){
+
+       $Vencimiento = Depositogracca::find($id);
+       $Vencimiento->partCode = $request->partCode;
+       $Vencimiento->cantidad = $request->cantidad;
+       $Vencimiento->fechaVencimiento = Carbon::now($request->fechaVencimiento);
+       $Vencimiento->save();
+       
+            $depositograccas= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+               return view('depositogracca.index', compact('depositograccas'));
+       
     ;}
 
     public function listadeposito(){
