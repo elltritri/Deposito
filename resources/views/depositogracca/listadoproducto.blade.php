@@ -22,12 +22,8 @@
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            <th>Guia</th>
-                                            <th>Nro Factura</th>
-                                            <th>Part Code</th>
-                                            <th>Part Cod. Alternativo</th>
-                                            <th>Part Cod. Alternativo 2</th>
                                             
+                                            <th>Part Code</th>
                                             <th>Producto</th>
                                             <th>Modelo</th>
                                             <th>Part Name</th>
@@ -35,17 +31,15 @@
                                             <th>Cantidad</th>
                                             <th>Origen</th>
                                             <th>Fecha Vencimiento</th>
+                                            <th>Estado</th>
+                                            <th>Deposito</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($lista as $fil)
                                             <tr>
-                                                <td>{{ $fil->guia }}</td>
-                                                <td>{{ $fil->numeroFactura }}</td>
                                                 <td>{{ $fil->partCode }}</td>
-                                                <td>{{ $fil->codigoAlternativo }}</td>
-                                                <td>{{ $fil->codigoAlternativo }}</td>
                                                 <td>{{ $fil->producto }}</td>
                                                 <td>{{ $fil->modelo }}</td>
                                                 <td>{{ $fil->partName }}</td>
@@ -53,6 +47,8 @@
                                                 <td>{{ $fil->cantidad }}</td>
                                                 <td>{{ $fil->origen }}</td>
                                                 <td>{{ $fil->fechaVencimiento }}</td>
+                                                <td>{{ $fil->estado }}</td>
+                                                <td>{{ $fil->deposito }}</td>    
                                                 <td>
                                                     <a class="btn btn-sm btn-primary "> Editar</a>
                                                 </td>

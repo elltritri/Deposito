@@ -25,6 +25,8 @@ class Depositogracca extends Migration
             $table->string('descripcion')->nullable();
             $table->integer('cantidad')->nullable();
             $table->string('origen')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('deposito')->nullable();
             $table->datetime('fechaVencimiento')->nullable();
             $table->timestamps();
         });

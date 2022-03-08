@@ -31,9 +31,7 @@ Route::get('comparar',[HomeController::class, 'comparar'])->name('admin.comparar
 Route::get('compararBF',[HomeController::class, 'compararBF'])->name('admin.compararBF');
 Route::post('compararDatosingenieria',[HomeController::class, 'compararDatosingenieria'])->name('admin.compararDatosingenieria');
 
-
 Route::get('imprimir',[HomeController::class, 'imprimir'])->name('admin.imprimir');
-
 
 Route::resource('producto',App\Http\Controllers\ProductoController::class)->names('producto');
 

@@ -65,6 +65,7 @@
                                 <label for="formFile">Seleccione el Packing List</label>
                                 {{-- <input type="file" name="file" class="btn btn-sm btn-primary" required> --}}
                                 <input class="form-control" type="file" id="file" name="file">
+                                1
                             </div> 
                                                           
                             <div class="col-sm-12 mt-4" style="text-align: center">

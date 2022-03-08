@@ -57,7 +57,7 @@ class DepositograccaController extends Controller {
         $productos = DB::table('depositograccas')->where('numeroFactura','=',$numeroFactura)->GET();
 
         return view('depositogracca.indexfactura', compact('factura','guia','producto','modelo','productos'))
-    ;}
+        ;}
  
     public function ingresoproducto(Request $request){
 
@@ -69,10 +69,11 @@ class DepositograccaController extends Controller {
         $Ingreso->modelo = $request->input('modelo');
         $Ingreso->partCode = $request->input('partCode');
         $Ingreso->cantidad = $request->input('cantidad');
-
+        $Ingreso->estado = "A verificar";
+        $Ingreso->deposito= "en Gracca";
         $Ingreso->save();
         return response()->json($Ingreso);
-    ;}
+        ;}
 
     public function ingresoVencimiento(Request $request, $id){
 
@@ -85,7 +86,7 @@ class DepositograccaController extends Controller {
             $depositograccas= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
                return view('depositogracca.index', compact('depositograccas'));
        
-    ;}
+        ;}
 
     public function listadeposito(){
 
