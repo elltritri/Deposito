@@ -8,7 +8,7 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center;">
-                            <h1>Lista de Productos en Gracca</h1>
+                            <h1>Lista de Productos </h1>
                         </div>
                         
                     </div>
@@ -51,9 +51,39 @@
                                                 <td>{{ $fil->deposito }}</td>    
                                                 <td>
                                                     <a class="btn btn-sm btn-primary "> Editar</a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editarModaldeposito{{ $fil->id }}">
+                                                        Enviar
+                                                    </button>
+                                                    <div class="modal fade" id="editarModaldeposito{{ $fil->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Enviar Producto</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                    <form action="{{ route('depositogracca.envio',$fil->id) }}" method="POST">
+                                                                        @csrf @method('PUT')
+                                                                        <div class="modal-body">
+                                                                            <label for="">Enviar articulo a:</label>
+                                                                            <div>
+                                                                                {{ Form::select('deposito', $deposito ,null, ['class' => 'form-control' . ($errors->has('deposito') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el deposito']) }}
+                                                                                {!! $errors->first('deposito', '<div class="invalid-feedback">:message</p>') !!}
+                                                                            </div>
+                                                                        </div>    
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                                        </div>
+                                                                    </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
