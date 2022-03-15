@@ -45,8 +45,12 @@ Route::get('listadoPanol',[DepositograccaController::class, 'listadoPanol'])->na
 Route::get('listadeposito',[DepositograccaController::class, 'listadeposito'])->name('depositogracca.listadeposito');
 Route::get('agregaradepositogracca/{numeroFactura}',[DepositograccaController::class, 'agregaradepositogracca'])->name('depositogracca.agregar');
 Route::post('ingresoproducto',[DepositograccaController::class, 'ingresoproducto'])->name('depositogracca.ingresoproducto');
+
+
 Route::put('ingresoVencimiento/{id}',[DepositograccaController::class, 'ingresoVencimiento'])->name('depositogracca.ingresoVencimiento');
+
 Route::put('envio/{id}',[DepositograccaController::class, 'envio'])->name('depositogracca.envio');
+Route::put('actualizarestadoproducto/{id}',[DepositograccaController::class, 'actualizarestadoproducto'])->name('depositogracca.actualizarestadoproducto');
 
 
 

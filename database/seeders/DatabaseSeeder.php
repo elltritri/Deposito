@@ -5,14 +5,12 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Producto;
+use App\Models\Deposito;
+use App\Models\Estados_producto;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+
     public function run()
     {
         
@@ -22,9 +20,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('asdasdasd')
         ]);
 
-        Producto::create([
-           'Descripcion' => 'PAÑOL',
-        ]);
         Producto::create([
             'Descripcion' => 'AIRE',
          ]);
@@ -40,10 +35,45 @@ class DatabaseSeeder extends Seeder
          Producto::create([
             'Descripcion' => 'SMT',
          ]);
-         Producto::create([
-            'Descripcion' => 'HELADERA',
+         
+         Deposito::create([
+            'Descripcion' => 'DEPOSITO',
+         ]);
+         Deposito::create([
+            'Descripcion' => 'PAÑOL',
+         ]);
+         Deposito::create([
+             'Descripcion' => 'AIRE',
+          ]);
+          Deposito::create([
+             'Descripcion' => 'TV',
+          ]);
+          Deposito::create([
+             'Descripcion' => 'CELULARES',
+          ]);
+          Deposito::create([
+             'Descripcion' => 'MICROONDAS',
+          ]);
+          Deposito::create([
+             'Descripcion' => 'SMT',
+          ]);
+          Deposito::create([
+             'Descripcion' => 'HELADERA',
+          ]);
+
+          Estados_producto::create([
+            'Descripcion' => 'A VERIFICAR',
+         ]);
+         Estados_producto::create([
+             'Descripcion' => 'OK',
+          ]);
+          Estados_producto::create([
+            'Descripcion' => 'UTILIZADO ',
          ]);
          
+          
+
+       
 
          
 

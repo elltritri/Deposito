@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class Depositogracca extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('Depositograccas', function (Blueprint $table) {
@@ -28,6 +23,7 @@ class Depositogracca extends Migration
             $table->string('estado')->nullable();
             $table->string('deposito')->nullable();
             $table->datetime('fechaVencimiento')->nullable();
+            $table->integer('id_usuario')->nullable();
             $table->timestamps();
         });
     }

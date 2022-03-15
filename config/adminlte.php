@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => '',
+    'title' => 'KMG Fueguina',
     'title_prefix' => '',
     'title_postfix' => '| KMG Fueguina ',
 
@@ -300,7 +300,7 @@ return [
                     ],
                 ],
                 [   'text'    => 'Heladera',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-refrigerator',
                     'submenu' => [
                         [   'text'        => 'Listado de Materiales',
                             'url'         => 'listadoheladera',
@@ -311,7 +311,7 @@ return [
                 ],
                 
                 [   'text'    => 'Microondas',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'far fa-microwave',
                     'submenu' => [
                         [   'text'        => 'Listado de Materiales',
                             'url'         => 'listadoMicroondas',

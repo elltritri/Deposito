@@ -10,19 +10,15 @@
                         <div style="text-align: center;">
                             <h1>Lista de Productos </h1>
                         </div>
-                        
                     </div>
                 </div>
-               
                 <div class="card" style="text-align: center">
                     <div>
-                        
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="tabla2" class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            
                                             <th>Part Code</th>
                                             <th>Producto</th>
                                             <th>Modelo</th>
@@ -50,11 +46,55 @@
                                                 <td>{{ $fil->estado }}</td>
                                                 <td>{{ $fil->deposito }}</td>    
                                                 <td>
-                                                    <a class="btn btn-sm btn-primary "> Editar</a>
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editarModaldeposito{{ $fil->id }}">
-                                                        Enviar
+                                                        Editar
                                                     </button>
                                                     <div class="modal fade" id="editarModaldeposito{{ $fil->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Estado</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                    <form action="{{ route('depositogracca.actualizarestadoproducto', $fil->id) }}" method="POST">
+
+                                                                        @csrf @method('PUT')
+                                                                        <div class="modal-body">
+                                                                            
+                                                                            <label for="">Cantidad:</label>
+                                                                            <input type="number" name="cantidad" id="cantidad" class="form-control" value="{{ $fil->cantidad }}" placeholder="Ingrese la Cantidad"  required>
+                                                                            @if(Session::has('message'))
+                                                                                <p style="color: red">{!! Session::get('message') !!}</p>
+                                                                            @endif
+                                                                            <label for="">Part Code:</label>
+                                                                            <input type="text" name="partCode" id="partCode" class="form-control" value="{{ $fil->partCode }}" placeholder="Ingrese PartNumber"  required>
+                                                                            @if(Session::has('message'))
+                                                                                <p style="color: red">{!! Session::get('message') !!}</p>
+                                                                            @endif
+                                                                            
+                                                                            <label for="">Cambiar estado a :</label>
+                                                                            {{ Form::select('estados_producto', $estados_producto ,null, ['class' => 'form-control' . ($errors->has('deposito') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el deposito']) }}
+                                                                            {!! $errors->first('estados_producto', '<div class="invalid-feedback">:message</p>') !!}
+                                                                           
+                                                                           
+
+
+                                                                        </div>    
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                                        </div>
+                                                                    </form>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#enviarModaldeposito{{ $fil->id }}">
+                                                        Enviar
+                                                    </button>
+                                                    <div class="modal fade" id="enviarModaldeposito{{ $fil->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
