@@ -289,32 +289,11 @@ return [
                         
                     ],
                 ],
-                [   'text'    => 'Transito',
-                    'icon'    => 'fas fa-truck',
-                    'submenu' => [
-                        [   'text'        => 'Listado de Transito de Materiales',
-                            'url'         => '#',
-                            'icon'        => '',
-                        ],  
-                        
-                    ],
-                ],
-                [   'text'    => 'Heladera',
-                    'icon'    => 'fas fa-refrigerator',
+                [   'text'    => 'Pañol',
+                    'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [   'text'        => 'Listado de Materiales',
-                            'url'         => 'listadoheladera',
-                            'icon'        => '',
-                        ],  
-                        
-                    ],
-                ],
-                
-                [   'text'    => 'Microondas',
-                    'icon'    => 'far fa-microwave',
-                    'submenu' => [
-                        [   'text'        => 'Listado de Materiales',
-                            'url'         => 'listadoMicroondas',
+                            'url'         => 'listadoPanol',
                             'icon'        => '',
                         ],  
                         
@@ -342,26 +321,63 @@ return [
                     ],
                 ],
                 [   'text'    => 'Celulares',
-                    'icon'    => 'fas fa-mobile-alt',
+                        'icon'    => 'fas fa-mobile-alt',
+                        'submenu' => [
+                            [   'text'        => 'Listado de Materiales',
+                                'url'         => 'listadoCelulares',
+                                'icon'        => '',
+                            ],  
+                            
+                        ],
+                ],
+                [   'text'    => 'Microondas',
+                    'icon'    => 'far fa-microwave',
                     'submenu' => [
                         [   'text'        => 'Listado de Materiales',
-                            'url'         => 'listadoCelulares',
+                            'url'         => 'listadoMicroondas',
+                            'icon'        => '',
+                        ],  
+                        
+                    ],
+                ],
+                [   'text'    => 'SMT',
+                    'icon'    => 'fas fa-refrigerator',
+                    'submenu' => [
+                        [   'text'        => 'Listado de Materiales',
+                            'url'         => '#',
+                            'icon'        => '',
+                        ],  
+                        
+                    ],
+                ],
+                [   'text'    => 'Heladera',
+                    'icon'    => 'fas fa-refrigerator',
+                    'submenu' => [
+                        [   'text'        => 'Listado de Materiales',
+                            'url'         => 'listadoheladera',
+                            'icon'        => '',
+                        ],  
+                        
+                    ],
+                ],
+                [   'text'    => 'Transito',
+                    'icon'    => 'fas fa-truck',
+                    'submenu' => [
+                        [   'text'        => 'Listado de Transito de Materiales',
+                            'url'         => '#',
                             'icon'        => '',
                         ],  
                         
                     ],
                 ],
                 
-                [   'text'    => 'Pañol',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'submenu' => [
-                        [   'text'        => 'Listado de Materiales',
-                            'url'         => 'listadoPanol',
-                            'icon'        => '',
-                        ],  
-                        
-                    ],
-                ],
+                
+                
+                
+               
+                
+                
+               
                 
             ],
         ],

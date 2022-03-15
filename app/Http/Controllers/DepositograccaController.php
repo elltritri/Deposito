@@ -92,44 +92,54 @@ class DepositograccaController extends Controller {
         $deposito = deposito::pluck('Descripcion','id');
         $lista=DB::table('depositograccas')->where('deposito','=', 1)->get();
             return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
-            
-    public function listadoMicroondas(){
-        $estados_producto=Estados_producto::pluck('Descripcion','id');
-        $deposito = deposito::pluck('Descripcion','id');
-        $lista=DB::table('depositograccas')->where('deposito','=', 5)->get();
-            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
 
-    public function listadoHeladera(){
+    public function listadoPanol(){
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
-        $lista=DB::table('depositograccas')->where('deposito','=', 7)->get();
-            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
-    
+        $lista=DB::table('depositograccas')->where('deposito','=', 2)->get();
+            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
+        }
     public function listadoAire(){
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
-        $lista=DB::table('depositograccas')->where('deposito','=', 7)->get();
+        $lista=DB::table('depositograccas')->where('deposito','=', 3)->get();
             return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
         }
     public function listadoTv(){
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
-        $lista=DB::table('depositograccas')->where('deposito','=', 8)->get();
+        $lista=DB::table('depositograccas')->where('deposito','=', 4)->get();
             return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
         }
     public function listadoCelulares(){
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
-        $lista=DB::table('depositograccas')->where('deposito','=', 9)->get();
+        $lista=DB::table('depositograccas')->where('deposito','=', 5)->get();
             return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
         }
-    public function listadoPanol(){
+        
+    public function listadoMicroondas(){
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
-        $lista=DB::table('depositograccas')->where('deposito','=', 10)->get();
-            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
-        }
+        $lista=DB::table('depositograccas')->where('deposito','=', 6)->get();
+            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
 
+    public function listadoSmt(){
+        $estados_producto=Estados_producto::pluck('Descripcion','id');
+        $deposito = deposito::pluck('Descripcion','id');
+        $lista=DB::table('depositograccas')->where('deposito','=', 7)->get();
+            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
+
+    public function listadoHeladera(){
+        $estados_producto=Estados_producto::pluck('Descripcion','id');
+        $deposito = deposito::pluck('Descripcion','id');
+        $lista=DB::table('depositograccas')->where('deposito','=', 8)->orderby('fechaVencimiento','desc')->get();
+            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
+    
+    
+
+    
+    
 
 
     public function envio ( Request $request, $id){
@@ -144,13 +154,13 @@ class DepositograccaController extends Controller {
 
         return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
     }
-    public function actualizarproductodeposito ( Request $request, $id){
+    public function actualizarestadoproducto ( Request $request, $id){
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
         $lista=DB::table('depositograccas')->get();
 
         $envio = Depositogracca::find($id);
-        $envio->deposito = $request->deposito;
+        
         $envio->estado = $request->estados_producto;
         $envio->save();
         
