@@ -132,7 +132,7 @@
                                                                 <p style="color: red">{!! Session::get('message') !!}</p>
                                                             @endif
                                                             <label for="">Fecha Vencimiento:</label>
-                                                            <input type="date" name="fecha" id="a" class="form-control" value="{{ $depositogracca->partCode }}"  placeholder="Ingrese la Fecha"  required>
+                                                            <input type="date" name="fechaVencimiento" id="a" class="form-control" value="{{ $depositogracca->fechaVencimiento }}"  placeholder="Ingrese la Fecha"  required>
                                                             @if(Session::has('message'))
                                                                 <p style="color: red">{!! Session::get('message') !!}</p>
                                                             @endif

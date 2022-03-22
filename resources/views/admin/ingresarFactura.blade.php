@@ -7,9 +7,15 @@
             <div class="col-sm-12 mt-4">
                 <div class="card" style="text-align: center">
                     <div style="text-align: center">
-                        <h1>Ingreso de PPL</h1>
+                        <h1>INGRESAR PPL</h1>
                     </div>
                 </div>
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
+
                 <div class="card">
                     <div class="card-body">
                         <div class="col-auto">

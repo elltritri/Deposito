@@ -20,12 +20,14 @@ class Listadofacturas extends Migration
             $table->string('descripcion')->nullable();
             $table->integer('cantidad')->nullable();
             $table->string('origen')->nullable();
+            
+
             $table->timestamps();
         });
     }
     
     public function down()
     {
-        Schema::dropIfExists('boListadofacturas');
+        Schema::dropIfExists('Listadofacturas');
     }
 }

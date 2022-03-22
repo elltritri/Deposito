@@ -14,6 +14,10 @@ class Depositogracca extends Model
     protected $table = 'depositograccas';
     protected $fillable = ['guia','numeroFactura','producto','modelo','partCode','codigoAlternativo','partName','descripcion','cantidad','origen'];
 
+    public function producto(){
+        return $this->belongsTo(Producto::class, 'id');
+    }
+
 
 
 }

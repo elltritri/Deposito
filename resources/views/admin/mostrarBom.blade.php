@@ -8,7 +8,7 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Tabla BOMS</h1>
+                            <h1>TABLA BOM</h1>
                         </div>
                         
                     </div>

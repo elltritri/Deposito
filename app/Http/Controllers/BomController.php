@@ -25,18 +25,18 @@ class BomController extends Controller
         }
 
     public function ingresarDatosBom(Request $request ){
-        $file = $request->file('file');
-        Excel::import(new bomimport , $file);
-
-        $datos = DB::table('boms')  
-            ->where('producto',null)                
-            ->update(['id_boms'=>$request->numeroBom,'producto'=>$request->producto,'modelo'=>$request->modelo,'codproducto'=>$request->codproducto]);
-        
-        $correo = new IngresodeDatosMailable; Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
-       
         $listabom= DB::table('boms')->groupBy('modelo')->get();
-        // $listabom = bom::all();
-        return view('admin.mostrarBom', compact('listabom'));
+
+       
+            $file = $request->file('file');
+            Excel::import(new bomimport , $file);
+            $datos = DB::table('boms')  
+                ->where('producto',null)                
+                ->update(['id_boms'=>$request->numeroBom,'producto'=>$request->producto,'modelo'=>$request->modelo,'codproducto'=>$request->codproducto]);
+            $correo = new IngresodeDatosMailable; Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
+            
+
+            return view('admin.mostrarBom', compact('listabom'));
         }
 
     public function mostrarBom(){
@@ -46,6 +46,21 @@ class BomController extends Controller
 
     public function mostrarDatosBom($id_boms){
         $listabom = DB::table('boms')->where('id_boms','=',$id_boms)->get();
+        return view('admin.mostrarDatosBom', compact('listabom'));
+        }
+
+    public function editarDatosBom(Request $request,$id_boms){
+        $listabom = DB::table('boms')->where('id_boms','=',$id_boms)->get();
+
+        $editar = Bom::find($id_boms);
+        $editar->partCode = $request->partCode;
+        $editar->codigoAlternativo = $request->codigoAlternativo;
+        $editar->partName = $request->partName;
+        $editar->cantidad = $request->cantidad;
+        
+        $editar->save();
+             
+
         return view('admin.mostrarDatosBom', compact('listabom'));
         }
 }

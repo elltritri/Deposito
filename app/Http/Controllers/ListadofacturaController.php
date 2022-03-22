@@ -20,7 +20,6 @@ use App\Models\Factura;
 
 class ListadofacturaController extends Controller
 {
-
         // DATOS DE FACTURA
         public function ingresarFactura(){
             $producto = Producto::pluck('Descripcion','id');
@@ -28,17 +27,16 @@ class ListadofacturaController extends Controller
         }
 
         public function ingresarDatosFactura(Request $request ){
+            // COMPARA EL INPUT INSERTADO Y VERIFICA SI EXISTE EN LA BD
+            if(Factura::where('numeroFactura', $request->numeroFactura)->exists()){
+                // SI ESTA EN LA BASE DE DATOS 
+                $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+                    return redirect()->route('admin.mostrarFactura', compact('listaFact'))
+            ->with('error', 'El numero de Factura ya se encuentra. Puede encontrarlo en este listado');
+            }else{
+                // NO ESTA EN LA BASE DE DATOS 
             $factura = Factura::create($request->all());
-            // DB::table('facturas')->insert(
-            //     [   'guia' => $request->guia, 
-            //         'numeroFactura' => $request->numeroFactura, 
-            //         'modelo' => $request->modelo, 
-            //         'lote' => $request->lote, 
-            //         'producto' => $request->producto
-            //         ]);
-                       
             $lote=$request->lote;
-
             $file = $request->file('file');
                     Excel::import(new facturaimport , $file);
             $datos = DB::table('listadofacturas')
@@ -52,8 +50,9 @@ class ListadofacturaController extends Controller
             $datos1= DB::select($upd);
             $correo = new IngresodeDatosMailable;
                 Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
-            $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+            $listaFact= DB::table('facturas')->get();
                     return view('admin.mostrarFactura', compact('listaFact'));
+             }
         }
 
         public function mostrarFactura(){

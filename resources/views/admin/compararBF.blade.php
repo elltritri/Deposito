@@ -5,6 +5,13 @@
 <div class="col-sm-12 mt-4">
     <div class="container-fluid">
         <div class="col-sm-12 mt-4">
+            <div class="card" style="text-align: center">
+                <div>
+                    <div style="text-align: center;">
+                        <h1>Comparacion de Ingenieria</h1>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body" style="text-align: center">
                     <div class="col-auto">

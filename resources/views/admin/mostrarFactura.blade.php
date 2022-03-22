@@ -9,11 +9,24 @@
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1>Listado de PPL</h1>
+                            <h1>LISTADO PPL</h1>
                         </div>
                         
                     </div>
                 </div>
+                
+                {{-- @if ($message = Session::get('success'))
+                <div class="col-sm-3 alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong> {{$message }}</strong>
+                </div>
+                @endif --}}
+                @if ($message = Session::get('error'))
+                <div class="col-sm-3 alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong> {{$message }}</strong>
+                </div>
+                @endif
                 <div class="card" style="text-align: center" id="Divfacturas">   
                         <div class="card-body">
                             <div class="table-responsive">

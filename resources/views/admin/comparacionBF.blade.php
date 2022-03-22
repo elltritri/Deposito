@@ -38,7 +38,7 @@
                 
                 <div class="card" style="text-align: center">
                     <div style="text-align: center">
-                        <h1>Resultado Boms N°: {{ $boms }}</h1>
+                        <h1>Faltante Boms N°: {{ $boms }}</h1>
                     </div>
                     <div>
                         <div class="card-body">
@@ -69,7 +69,7 @@
                 
                 <div class="card" style="text-align: center">
                     <div style="text-align: center">
-                        <h1>Resultado Factura N°:{{ $factura }}</h1>
+                        <h1>Faltante Factura N°:{{ $factura }}</h1>
                     </div>
                     <div>
                         <div class="card-body">

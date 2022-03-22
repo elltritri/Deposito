@@ -1,28 +1,26 @@
 @extends('adminlte::page')
-
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            
             <div class="col-sm-12 mt-4">
                 <div class="card" style="text-align: center">
                     <div>
                         <div style="text-align: center">
-                            <h1> INGRESO DE BOMS</h1>
+                            <h1> INGRESO DE BOM</h1>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="card">
-                    
                     <div class="card-body">
                         <div class="col-auto">
                         <form action="{{ route('admin.ingresarDatosBom') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                            
+                        @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                             <div class="card-body">
-                                       
                                 <div>
                                     <div class="col-sm-3 mt-4" style="float: left">
                                         <label for="">N°Bom:</label>
@@ -50,29 +48,16 @@
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
                                     </div>
-                                    {{-- <div class="col-sm-3 mt-4" style="float: left">
-                                        <label for="">Lote:</label>
-                                        <input type="number" name="lote" id="lote" class="form-control" placeholder="Ingrese la cantidad" required>
-                                        @if(Session::has('message'))
-                                            <p style="color: red">{!! Session::get('message') !!}</p>
-                                        @endif
-                                    </div> --}}
-                                    
                                 </div>
                             </div>
                             </p>
                             <div class="col-sm-12" style="text-align: center">
-                                <label for="formFile">Seleccione el Packing List</label>
-                                {{-- <input type="file" name="file" class="btn btn-sm btn-primary" required> --}}
+                                <label for="formFile">Seleccione BOM</label>
                                 <input class="form-control" type="file" id="file" name="file">
-                                1
                             </div> 
-                                                          
                             <div class="col-sm-12 mt-4" style="text-align: center">
                                 <input type="submit" value="Guardar y Enviar" class="btn btn-sm btn-primary ">
                             </div>  
-
-                            
                         </form>
                         </div>
                     </div>

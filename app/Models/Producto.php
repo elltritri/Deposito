@@ -4,17 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Producto
- *
- * @property $id
- * @property $Descripcion
- * @property $created_at
- * @property $updated_at
- *
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
+
 class Producto extends Model
 {
     
@@ -24,13 +14,18 @@ class Producto extends Model
 
     protected $perPage = 20;
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
+  
     protected $fillable = ['Descripcion'];
 
+
+    public function DepositoGracca()
+    {
+        return $this->hasMany(DepositoGracca::class, 'id');
+    }
+    public function Listadofactura()
+    {
+        return $this->hasMany(Listadofactura::class, 'id');
+    }
 
 
 }

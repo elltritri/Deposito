@@ -2,105 +2,42 @@
 
 
 @section('content')
+<div class="col-sm-12 mt-4">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 mt-4">
-                <div class="card" style="text-align: center">
-                    <div>
-                        <div style="text-align: center;">
-                            <h1>Tabla Detalle BOMS</h1>
-                        </div>
+        <div class="col-sm-12 mt-4">
+            <div class="card" style="text-align: center">
+                <div>
+                    <div style="text-align: center;">
+                        <h1>Comparacion de Deposito y PPL</h1>
                     </div>
                 </div>
-                <div class="card" style="text-align: center">
-                    <div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="tabla2" class="table table-striped table-hover">
-                                    <thead class="thead">
-                                        <tr>
-                                            <th>Part Code</th>
-                                            <th>Part Cod. Alternativo</th>
-                                            <th>Cod. Producto</th>
-                                            <th>Producto</th>
-                                            <th>Modelo</th>
-                                            <th>Part Name</th>
-                                            <th>Descripcion</th>
-                                            <th>Cantidad</th>
-                                            <th>Origen</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($listabom as $fil)
-                                            <tr>
-                                                <td>{{ $fil->partCode }}</td>
-                                                <td>{{ $fil->codigoAlternativo }}</td>
-                                                <td>{{ $fil->codproducto }}</td>
-                                                <td>{{ $fil->producto }}</td>
-                                                <td>{{ $fil->modelo }}</td>
-                                                <td>{{ $fil->partName }}</td>
-                                                <td>{{ $fil->descripcion }}</td>
-                                                <td>{{ $fil->cantidad }}</td>
-                                                <td>{{ $fil->origen }}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editarModaldeposito{{ $fil->id }}">
-                                                        Editar
-                                                    </button>
-                                                    <div class="modal fade" id="editarModaldeposito{{ $fil->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Editar producto BOM</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                    <form action="{{ route('admin.editarDatosBom', $fil->id) }}" method="POST">
-                                                                        @csrf @method('PUT')
-                                                                        <div class="modal-body">
-                                                                            
-                                                                            <label for="">Part Code:</label>
-                                                                            <input type="text" name="partCode" id="partCode" class="form-control" value="{{ $fil->partCode }}" placeholder="Ingrese PartNumber"  required>
-                                                                            @if(Session::has('message'))
-                                                                                <p style="color: red">{!! Session::get('message') !!}</p>
-                                                                            @endif
-                                                                            <label for="">Codigo Alternativo:</label>
-                                                                            <input type="text" name="codigoAlternativo" id="codigoAlternativo" class="form-control" value="{{ $fil->codigoAlternativo }}" placeholder="Ingrese PartNumber"  >
-                                                                            @if(Session::has('message'))
-                                                                                <p style="color: red">{!! Session::get('message') !!}</p>
-                                                                            @endif
-                                                                            <label for="">Part Name:</label>
-                                                                            <input type="text" name="partName" id="partName" class="form-control" value="{{ $fil->partName }}" placeholder="Ingrese PartNumber"  required>
-                                                                            @if(Session::has('message'))
-                                                                                <p style="color: red">{!! Session::get('message') !!}</p>
-                                                                            @endif
-                                                                            <label for="">Cantidad:</label>
-                                                                            <input type="text" name="cantidad" id="cantidad" class="form-control" value="{{ $fil->cantidad }}" placeholder="Ingrese PartNumber"  required>
-                                                                            @if(Session::has('message'))
-                                                                                <p style="color: red">{!! Session::get('message') !!}</p>
-                                                                            @endif
-                                                                        </div>    
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                                                                        </div>
-                                                                    </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
             </div>
+            <div class="card">
+                <div class="card-body" style="text-align: center">
+                    <div class="col-auto">
+                        <form action="{{ route('admin.compararDatosDeposito') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">    
+                                            <label for="">Ingrese N° PPL</label>
+                                                {!! Form::select('numeroFactura', $factura, null, ['class' => 'form-control' ]) !!}
+                                                @if(Session::has('message'))
+                                                    <p style="color: red">{!! Session::get('message') !!}</p>
+                                                @endif
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="submit" value="Comparar" class="btn btn-sm btn-primary ">
+                                        </div>
+                                    </div>
+                                </div>  
+                        </form>
+                    </div>
+                </div>
+            </div>    
         </div>
     </div>
+</div>
 @endsection
 
 
@@ -114,8 +51,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
 @endsection
 @section('js')
+    
     <script>
-         /*!
+        /*!
             Copyright 2008-2021 SpryMedia Ltd.
 
             This source file is free software, available under the following license:
@@ -302,7 +240,6 @@
             _fnDetectHeader:xa,_fnGetUniqueThs:Na,_fnFeatureHtmlFilter:Kb,_fnFilterComplete:za,_fnFilterCustom:Tb,_fnFilterColumn:Sb,_fnFilter:Rb,_fnFilterCreateSearch:hb,_fnEscapeRegex:ib,_fnFilterData:Ub,_fnFeatureHtmlInfo:Nb,_fnUpdateInfo:Xb,_fnInfoMacros:Yb,_fnInitialise:Ba,_fnInitComplete:Pa,_fnLengthChange:jb,_fnFeatureHtmlLength:Jb,_fnFeatureHtmlPaginate:Ob,_fnPageChange:lb,_fnFeatureHtmlProcessing:Lb,_fnProcessingDisplay:V,_fnFeatureHtmlTable:Mb,_fnScrollDraw:Ha,_fnApplyToChildren:ca,_fnCalculateColumnWidths:Ya,
             _fnThrottle:gb,_fnConvertToWidth:Zb,_fnGetWidestNode:$b,_fnGetMaxLenString:ac,_fnStringToCss:K,_fnSortFlatten:pa,_fnSort:Hb,_fnSortAria:cc,_fnSortListener:nb,_fnSortAttachListener:eb,_fnSortingClasses:Ra,_fnSortData:bc,_fnSaveState:qa,_fnLoadState:dc,_fnImplementState:pb,_fnSettingsFromNode:Sa,_fnLog:da,_fnMap:X,_fnBindAction:ob,_fnCallbackReg:R,_fnCallbackFire:F,_fnLengthOverflow:kb,_fnRenderer:fb,_fnDataSource:Q,_fnRowAttributes:db,_fnExtend:qb,_fnCalculateEnd:function(){}});l.fn.dataTable=u;u.$=
             l;l.fn.dataTableSettings=u.settings;l.fn.dataTableExt=u.ext;l.fn.DataTable=function(a){return l(this).dataTable(a).api()};l.each(u,function(a,b){l.fn.DataTable[a]=b});return u});
-    
     </script>
     <script>
                     /*!
@@ -324,10 +261,9 @@
         $(document).ready(function() {
             $('#tabla2').DataTable();
         } );
-
-      
-    
-
+        $(document).ready(function() {
+            $('#tabla1').DataTable();
+        } );
     </script>
 @endsection
     

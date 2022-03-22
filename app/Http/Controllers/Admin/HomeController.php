@@ -95,6 +95,32 @@ class HomeController extends Controller
         
         
     }
+    public function compararPPLD(Request $request){
+        $boms = DB::table('boms')->select('id_boms')->groupby('id_boms')->pluck('id_boms','id_boms');
+        $factura=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura','numeroFactura');
+        return view('admin.compararPPLD', compact('factura','boms'));
+        
+        
+        
+    }
+
+    public function compararDatosDeposito(Request $request){
+        
+        $factura =  $request->numeroFactura;
+        
+
+        $sql1 =  'SELECT * FROM depositograccas WHERE numeroFactura = '.$factura.' AND estado=1  ';
+        $primera = DB::select($sql1);
+        
+
+            return view('admin.comparacionPLLD',compact('primera','factura'));
+        
+        
+    }
+
+
+
+
 
     public function indexproducto()
     {

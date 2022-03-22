@@ -53,6 +53,7 @@ class DepositograccaController extends Controller {
         $factura=$numeroFactura;
         $guia= DB::table('listadofacturas')->select('guia')->where('numeroFactura','=',$numeroFactura)->groupby('guia')->get();
         $producto= DB::table('listadofacturas')->select('producto')->where('numeroFactura','=',$numeroFactura)->groupby('producto')->get();
+        // $valorproducto=DB::table('productos')->select('Descripcion')->where('id','=',$producto)->get();
         $modelo= DB::table('listadofacturas')->select('modelo')->where('numeroFactura','=',$numeroFactura)->groupby('modelo')->get();
         $productos = DB::table('depositograccas')->where('numeroFactura','=',$numeroFactura)->GET();
 
@@ -80,7 +81,7 @@ class DepositograccaController extends Controller {
        $Vencimiento = Depositogracca::find($id);
        $Vencimiento->partCode = $request->partCode;
        $Vencimiento->cantidad = $request->cantidad;
-       $Vencimiento->fechaVencimiento = Carbon::now($request->fechaVencimiento);
+       $Vencimiento->fechaVencimiento = $request->fechaVencimiento;
        $Vencimiento->save();
             $depositograccas= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
                return view('depositogracca.index', compact('depositograccas'));
@@ -155,12 +156,15 @@ class DepositograccaController extends Controller {
         return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
     }
     public function actualizarestadoproducto ( Request $request, $id){
+
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
         $lista=DB::table('depositograccas')->get();
 
-        $envio = Depositogracca::find($id);
         
+        $envio = Depositogracca::find($id);
+        $envio->cantidad = $request->cantidad;
+        $envio->partCode = $request->partCode;
         $envio->estado = $request->estados_producto;
         $envio->save();
         

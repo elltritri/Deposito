@@ -23,28 +23,29 @@ Route::get('ingresarBom',[BomController::class, 'ingresarBom'])->name('admin.ing
 Route::post('ingresarDatosBom',[BomController::class, 'ingresarDatosBom'])->name('admin.ingresarDatosBom');
 Route::get('mostrarBom',[BomController::class, 'mostrarBom'])->name('admin.mostrarBom');
 Route::get('mostrarDatosBom/{id_boms}',[BomController::class, 'mostrarDatosBom'])->name('admin.mostrarDatosBom');
+Route::put('editarDatosBom/{id_boms}',[BomController::class, 'editarDatosBom'])->name('admin.editarDatosBom');
 
 Route::get('importar',[HomeController::class, 'importar'])->name('admin.importar');
 Route::post('importarDatos',[HomeController::class, 'importarDatos'])->name('admin.importarDatos');
-
 Route::get('comparar',[HomeController::class, 'comparar'])->name('admin.comparar');
 Route::get('compararBF',[HomeController::class, 'compararBF'])->name('admin.compararBF');
+Route::get('compararPPLD',[HomeController::class, 'compararPPLD'])->name('admin.compararPPLD');
 Route::post('compararDatosingenieria',[HomeController::class, 'compararDatosingenieria'])->name('admin.compararDatosingenieria');
+Route::post('compararDatosDeposito',[HomeController::class, 'compararDatosDeposito'])->name('admin.compararDatosDeposito');
 
 Route::get('imprimir',[HomeController::class, 'imprimir'])->name('admin.imprimir');
 
 Route::resource('producto',App\Http\Controllers\ProductoController::class)->names('producto');
 
+
 Route::resource('depositogracca',DepositograccaController::class)->names('depositogracca');
-
-
 Route::get('listadeposito',[DepositograccaController::class, 'listadeposito'])->name('depositogracca.listadeposito');
 Route::get('listadoPanol',[DepositograccaController::class, 'listadoPanol'])->name('listadoPanol');
 Route::get('listadoAire',[DepositograccaController::class, 'listadoAire'])->name('listadoAire');
 Route::get('listadoTv',[DepositograccaController::class, 'listadoTv'])->name('listadoTv');
 Route::get('listadoCelulares',[DepositograccaController::class, 'listadoCelulares'])->name('listadoCelulares');
 Route::get('listadoMicroondas',[DepositograccaController::class, 'listadoMicroondas'])->name('listadoMicroondas');
-
+Route::get('listadoSmt',[DepositograccaController::class, 'listadoSmt'])->name('listadoSmt');
 Route::get('listadoheladera',[DepositograccaController::class, 'listadoheladera'])->name('listadoheladera');
 
 
