@@ -24,7 +24,7 @@
                                 <div>
                                     <div class="col-sm-3 mt-4" style="float: left">
                                         <label for="">N°Bom:</label>
-                                        <input type="text" name="numeroBom" id="numeroBom" class="form-control" value="{{ $numerobom+1 }}">
+                                        <input type="text" name="numeroBom" id="numeroBom" class="form-control" >
                                         @if(Session::has('message'))
                                             <p style="color: red">{!! Session::get('message') !!}</p>
                                         @endif
