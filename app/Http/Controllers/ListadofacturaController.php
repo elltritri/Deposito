@@ -46,8 +46,8 @@ class ListadofacturaController extends Controller
                                     'producto'=>$request->producto,
                                     'modelo'=>$request->modelo,
                         ]);
-            $upd='Update listadofacturas set cantidad=cantidad*'.$lote.' where numeroFactura='.$request->numeroFactura.'';
-            $datos1= DB::select($upd);
+            // $upd='Update listadofacturas set cantidad=cantidad*'.$lote.' where numeroFactura='.$request->numeroFactura.'';
+            // $datos1= DB::select($upd);
             $correo = new IngresodeDatosMailable;
                 Mail::to('osvaldo.godoy@kmgfueguina.com.ar')->send($correo);
             $listaFact= DB::table('facturas')->get();

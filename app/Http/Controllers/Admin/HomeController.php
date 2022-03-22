@@ -29,7 +29,6 @@ class HomeController extends Controller
         return view('admin.index');
     }
 
-    
     // DATOS DE IMPORTACION
     public function importar(){
 
@@ -66,61 +65,35 @@ class HomeController extends Controller
         $boms   =  $request->boms;  
         $factura =  $request->numeroFactura;
         
-        // $sql =  'SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.' 
-        //         UNION 
-        //         SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'';
 
-        // $segunda = DB::select($sql);        
-        $sql1 =  'SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.'';
-        $primera = DB::select($sql1);
-        $sql2 = 'SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'';
-        $segunda = DB::select($sql2);
-
-        // $primera = DB::table('boms as T1')
-        //         ->selectRaw('T1.*')
-        //         ->selectRaw('T2.*')
-        //         ->leftJoin('listadofacturas as T2', 'T1.partCode', '=', 'T2.partCode')
-        //         ->whereNull('T2.partCode')
-        //         ->where('T1.id_boms', $boms);
-        // $definitiva = DB::table('listadofacturas as T2')
-        //         ->selectRaw('T1.*')
-        //         ->selectRaw('T2.*')
-        //         ->leftJoin('boms as T1', 'T2.partCode', '=', 'T1.partCode')
-        //         ->whereNull('T1.partCode')
-        //         ->where('T2.numeroFactura', $factura);
         
-        // $segunda = $primera->union($definitiva)->get();
+        $sql1 =  "SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.'";
+        
+        $primera = DB::select($sql1);
+        
+        $sql2 = "SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'";
+        $segunda = DB::select($sql2);
         
             return view('admin.comparacionBF',compact('primera','segunda','factura','boms'));
         
-        
-    }
+        }
+
     public function compararPPLD(Request $request){
         $boms = DB::table('boms')->select('id_boms')->groupby('id_boms')->pluck('id_boms','id_boms');
         $factura=DB::table('listadofacturas')->select('numeroFactura')->groupby('numeroFactura')->pluck('numeroFactura','numeroFactura');
         return view('admin.compararPPLD', compact('factura','boms'));
         
-        
-        
-    }
+        }
 
     public function compararDatosDeposito(Request $request){
         
         $factura =  $request->numeroFactura;
-        
-
         $sql1 =  'SELECT * FROM depositograccas WHERE numeroFactura = '.$factura.' AND estado=1  ';
         $primera = DB::select($sql1);
-        
-
+    
             return view('admin.comparacionPLLD',compact('primera','factura'));
-        
-        
-    }
 
-
-
-
+        }
 
     public function indexproducto()
     {
@@ -128,9 +101,9 @@ class HomeController extends Controller
 
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
+        }
 
-    }
+}
 
     
 
