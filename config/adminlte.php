@@ -245,7 +245,6 @@ return [
                             'icon'        => 'far fa-fw fa-file',
                             'icon_color'        => 'green',
                         ],
-                        
                     ]
                 ],
                 [   'text'        => 'PPL',
@@ -275,36 +274,40 @@ return [
         [   'text'    => 'DEPOSITO',
             'icon'    => 'far fa-tag',
             'submenu' => [
+                [   'text'        => 'Ingreso a Deposito',
+                    'url'         => 'indexdeposito',
+                    'icon'        => 'fas fa-cube',
+                    'icon_color' => 'blue',
+                ],
+                [   'text'        => 'Listado de Materiales',
+                    'url'         => 'listadeposito',
+                    'icon'        => 'fas fa-cube',
+                    'icon_color' => 'blue',
+                ],
                 [   'text'    => 'Gracca',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
-                        [   'text'        => 'Ingreso a Deposito',
-                            'url'         => 'depositogracca',
-                            'icon'        => 'far fa-info-square',
-                        ],
                         [   'text'        => 'Listado de Materiales',
-                            'url'         => 'listadeposito',
+                            'url'         => 'listagracca',
                             'icon'        => '',
                         ],  
                         [   'text'        => 'Comparacion con PPL',
                             'url'         => 'compararPPLD',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [   'text'    => 'Pañol',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [   'text'        => 'Ingreso a Deposito',
-                            'url'         => '#',
+                            'url'         => 'ingresopanol',
                             'icon'        => 'far fa-info-square',
                         ],
                         [   'text'        => 'Listado de Materiales',
                             'url'         => 'listadoPanol',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [
@@ -315,7 +318,6 @@ return [
                             'url'         => 'listadoAire',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [   'text'    => 'TV',
@@ -325,7 +327,6 @@ return [
                             'url'         => 'listadoTv',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [   'text'    => 'Celulares',
@@ -335,7 +336,6 @@ return [
                                 'url'         => 'listadoCelulares',
                                 'icon'        => '',
                             ],  
-                            
                         ],
                 ],
                 [   'text'    => 'Microondas',
@@ -345,7 +345,6 @@ return [
                             'url'         => 'listadoMicroondas',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [   'text'    => 'SMT',
@@ -355,7 +354,6 @@ return [
                             'url'         => 'listadoSmt',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [   'text'    => 'Heladera',
@@ -369,7 +367,6 @@ return [
                             'url'         => 'listadoheladera',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 [   'text'    => 'Transito',
@@ -379,7 +376,6 @@ return [
                             'url'         => '#',
                             'icon'        => '',
                         ],  
-                        
                     ],
                 ],
                 

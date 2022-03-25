@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Deposito;
+use App\Models\Factura;
+use App\Models\Producto;
 use App\Models\Estados_producto;
 use App\Models\Depositogracca;
 use App\Models\Listadofactura;
@@ -10,46 +12,12 @@ use Carbon\Carbon;
 
 class DepositograccaController extends Controller {
     
+    
     public function index(){   
         $depositograccas= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
         return view('depositogracca.index', compact('depositograccas'));}
 
-    public function create(){
-        $depositogracca = new Depositogracca();
-        return view('depositogracca.create', compact('depositogracca'));}
-
-    public function store(Request $request){
-        request()->validate(Depositogracca::$rules);
-        $depositogracca = Depositogracca::create($request->all());
-        return redirect()->route('depositogracca.index')
-            ->with('success', 'Depositogracca created successfully.');}
-
-    public function show($id){
-        $depositogracca = Depositogracca::find($id);
-        return view('depositogracca.show', 
-                            compact('depositogracca'));}
- 
-    public function edit($id){
-        $nrofactura = DB::table('listadofacturas')
-                            ->select('numeroFactura')
-                            ->where('id','=',$id);
-        $factura = DB::table('listadofacturas')
-                            ->where('numeroFactura','=',$nrofactura);
-        return view('depositogracca.indexfactura', 
-                            compact('factura'));}
- 
-    public function update(Request $request, Depositogracca $depositogracca){
-        request()->validate(Depositogracca::$rules);
-        $depositogracca->update($request->all());
-        return redirect()->route('depositogracca.index')
-            ->with('success', 'Depositogracca updated successfully');}
-
-    public function destroy($id){
-        $depositogracca = Depositogracca::find($id)->delete();
-        return redirect()->route('depositogracca.index')
-            ->with('success', 'Depositogracca deleted successfully');}
-    public function agregaradepositogracca($numeroFactura){
-
+    public function agregaradeposito($numeroFactura){
         $factura=$numeroFactura;
         $guia= DB::table('listadofacturas')->select('guia')->where('numeroFactura','=',$numeroFactura)->groupby('guia')->get();
         $producto= DB::table('listadofacturas')->select('producto')->where('numeroFactura','=',$numeroFactura)->groupby('producto')->get();
@@ -59,6 +27,42 @@ class DepositograccaController extends Controller {
 
         return view('depositogracca.indexfactura', compact('factura','guia','producto','modelo','productos'))
         ;}
+
+    // public function create(){
+    //     $depositogracca = new Depositogracca();
+    //     return view('depositogracca.create', compact('depositogracca'));}
+
+    // public function store(Request $request){
+    //     request()->validate(Depositogracca::$rules);
+    //     $depositogracca = Depositogracca::create($request->all());
+    //     return redirect()->route('depositogracca.index')
+    //         ->with('success', 'Depositogracca created successfully.');}
+
+    // public function show($id){
+    //     $depositogracca = Depositogracca::find($id);
+    //     return view('depositogracca.show', 
+    //                         compact('depositogracca'));}
+ 
+    // public function edit($id){
+    //     $nrofactura = DB::table('listadofacturas')
+    //                         ->select('numeroFactura')
+    //                         ->where('id','=',$id);
+    //     $factura = DB::table('listadofacturas')
+    //                         ->where('numeroFactura','=',$nrofactura);
+    //     return view('depositogracca.indexfactura', 
+    //                         compact('factura'));}
+ 
+    // public function update(Request $request, Depositogracca $depositogracca){
+    //     request()->validate(Depositogracca::$rules);
+    //     $depositogracca->update($request->all());
+    //     return redirect()->route('depositogracca.index')
+    //         ->with('success', 'Depositogracca updated successfully');}
+
+    // public function destroy($id){
+        // $depositogracca = Depositogracca::find($id)->delete();
+        // return redirect()->route('depositogracca.index')
+        //     ->with('success', 'Depositogracca deleted successfully');}
+    
  
     public function ingresoproducto(Request $request){
 
@@ -75,6 +79,27 @@ class DepositograccaController extends Controller {
         $Ingreso->save();
             return response()->json($Ingreso);
         ;}
+    
+    public function ingresopanol(Request $request){
+         $producto = Producto::pluck('Descripcion','id');
+         $listado=Factura::all();
+
+            return view('depositogracca.ingresomaterial',compact('listado','producto'));
+        
+            ;}
+    public function ingresoFacturaPanol(Request $request){
+        $Ingreso = new Factura;
+        
+        $Ingreso->numeroFactura = $request->input('numeroFactura');
+        $Ingreso->producto = $request->input('producto');
+        $Ingreso->modelo = $request->input('modelo');
+        $Ingreso->lote = $request->input('cantidadlote');
+        // $Ingreso->id_usuario=auth()->id();
+        $Ingreso->save();
+
+        
+        return redirect()->back();
+    }
 
     public function ingresoVencimiento(Request $request, $id){
 
@@ -92,6 +117,11 @@ class DepositograccaController extends Controller {
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
         $lista=DB::table('depositograccas')->where('deposito','=', 1)->get();
+            return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
+    public function listagracca(){
+        $estados_producto=Estados_producto::pluck('Descripcion','id');
+        $deposito = deposito::pluck('Descripcion','id');
+        $lista=DB::table('depositograccas')->where('deposito','=', 9)->get();
             return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));}
 
     public function listadoPanol(){
@@ -154,22 +184,23 @@ class DepositograccaController extends Controller {
         
 
         return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
-    }
+     }
     public function actualizarestadoproducto ( Request $request, $id){
 
         $estados_producto=Estados_producto::pluck('Descripcion','id');
         $deposito = deposito::pluck('Descripcion','id');
         $lista=DB::table('depositograccas')->get();
-
-        
         $envio = Depositogracca::find($id);
         $envio->cantidad = $request->cantidad;
         $envio->partCode = $request->partCode;
         $envio->estado = $request->estados_producto;
         $envio->save();
         
-
         return view('depositogracca.listadoproducto', compact('lista','deposito','estados_producto'));
-    }
+      }
+
+    
+
+    
 
 }

@@ -64,14 +64,11 @@ class HomeController extends Controller
         
         $boms   =  $request->boms;  
         $factura =  $request->numeroFactura;
-        
-
-        
-        $sql1 =  "SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='.$boms.'";
-        
+ 
+        $sql1 =  "SELECT t1.partCode, t1.partName FROM boms T1 LEFT JOIN listadofacturas T2 ON T1.partCode = T2.partCode WHERE T2.partCode IS NULL and T1.id_boms='$boms'";
         $primera = DB::select($sql1);
-        
-        $sql2 = "SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='.$factura.'";
+        // var_dump($sql1);
+        $sql2 = "SELECT t2.partCode, t2.partName FROM listadofacturas T2 LEFT JOIN boms T1 ON T1.partCode = T2.partCode WHERE T1.partCode IS NULL and T2.numeroFactura='$factura'";
         $segunda = DB::select($sql2);
         
             return view('admin.comparacionBF',compact('primera','segunda','factura','boms'));
@@ -88,7 +85,7 @@ class HomeController extends Controller
     public function compararDatosDeposito(Request $request){
         
         $factura =  $request->numeroFactura;
-        $sql1 =  'SELECT * FROM depositograccas WHERE numeroFactura = '.$factura.' AND estado=1  ';
+        $sql1 =  "SELECT * FROM depositograccas WHERE numeroFactura = '.$factura.' AND estado=1  ";
         $primera = DB::select($sql1);
     
             return view('admin.comparacionPLLD',compact('primera','factura'));

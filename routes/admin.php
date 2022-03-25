@@ -38,9 +38,14 @@ Route::get('imprimir',[HomeController::class, 'imprimir'])->name('admin.imprimir
 Route::resource('producto',App\Http\Controllers\ProductoController::class)->names('producto');
 
 
-Route::resource('depositogracca',DepositograccaController::class)->names('depositogracca');
+Route::resource('indexdeposito',DepositograccaController::class)->names('depositogracca');
+Route::get('agregaradeposito/{numeroFactura}',[DepositograccaController::class, 'agregaradeposito'])->name('depositogracca.agregar');
+
 Route::get('listadeposito',[DepositograccaController::class, 'listadeposito'])->name('depositogracca.listadeposito');
+Route::get('listagracca',[DepositograccaController::class, 'listagracca'])->name('depositogracca.listagracca');
 Route::get('listadoPanol',[DepositograccaController::class, 'listadoPanol'])->name('listadoPanol');
+Route::get('ingresopanol',[DepositograccaController::class, 'ingresopanol'])->name('depositogracca.ingresopanol');
+Route::put('ingresarFacturaPanol',[DepositograccaController::class, 'ingresoFacturaPanol'])->name('ingresarFacturaPanol');
 Route::get('listadoAire',[DepositograccaController::class, 'listadoAire'])->name('listadoAire');
 Route::get('listadoTv',[DepositograccaController::class, 'listadoTv'])->name('listadoTv');
 Route::get('listadoCelulares',[DepositograccaController::class, 'listadoCelulares'])->name('listadoCelulares');
@@ -49,7 +54,8 @@ Route::get('listadoSmt',[DepositograccaController::class, 'listadoSmt'])->name('
 Route::get('listadoheladera',[DepositograccaController::class, 'listadoheladera'])->name('listadoheladera');
 
 
-Route::get('agregaradepositogracca/{numeroFactura}',[DepositograccaController::class, 'agregaradepositogracca'])->name('depositogracca.agregar');
+
+
 Route::post('ingresoproducto',[DepositograccaController::class, 'ingresoproducto'])->name('depositogracca.ingresoproducto');
 Route::put('ingresoVencimiento/{id}',[DepositograccaController::class, 'ingresoVencimiento'])->name('depositogracca.ingresoVencimiento');
 Route::put('envio/{id}',[DepositograccaController::class, 'envio'])->name('depositogracca.envio');
