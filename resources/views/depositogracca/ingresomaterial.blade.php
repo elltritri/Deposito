@@ -88,7 +88,7 @@
                                     <td>{{ $depositogracca->modelo }}</td>
                                     <td>{{ $depositogracca->lote }}</td>
                                     <td>
-                                        
+                                        <a class="btn btn-sm btn-primary " href="{{ route('depositogracca.agregar',$depositogracca->numeroFactura) }}"><i class="fa fa-fw fa-eye"></i>Ingreso</a> 
                                     </td>
                                     
                                 </tr>

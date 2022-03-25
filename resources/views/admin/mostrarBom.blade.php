@@ -13,6 +13,12 @@
                         
                     </div>
                 </div>
+                @if ($message = Session::get('error'))
+                <div class="col-sm-3 alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong> {{$message }}</strong>
+                </div>
+                @endif
                 <div class="card" style="text-align: center">
                     <div>
                         <div class="card-body">

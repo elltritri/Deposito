@@ -27,7 +27,11 @@ class BomController extends Controller
     public function ingresarDatosBom(Request $request ){
         $listabom= DB::table('boms')->groupBy('modelo')->get();
 
-       
+        if(Bom::where('id_boms', $request->numeroBom)->exists()){
+            $listaFact= DB::table('boms')->groupBy('id_boms')->get();
+                    return redirect()->route('admin.mostrarBom', compact('listaFact'))
+            ->with('error', 'El numero de BOM ya se encuentra. Puede encontrarlo en este listado');
+        }else{
             $file = $request->file('file');
             Excel::import(new bomimport , $file);
             $datos = DB::table('boms')  
@@ -37,6 +41,7 @@ class BomController extends Controller
             
 
             return view('admin.mostrarBom', compact('listabom'));
+        }
         }
 
     public function mostrarBom(){

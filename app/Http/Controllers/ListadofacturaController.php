@@ -56,7 +56,7 @@ class ListadofacturaController extends Controller
         }
 
         public function mostrarFactura(){
-            $listaFact= DB::table('listadofacturas')->groupBy('numeroFactura')->get();
+            $listaFact= Factura::all();
             return view('admin.mostrarFactura', compact('listaFact'));
         }
 

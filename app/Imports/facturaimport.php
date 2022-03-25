@@ -18,6 +18,7 @@ class facturaimport implements ToModel, WithStartRow
             'partCode'=> $row[1],
             'codigoAlternativo'=> $row[2],
             'partName' => $row[3],
+            'descripcion' => $row[4],
             'cantidad' => $row[5],
             'origen' => $row[6],
         ]);

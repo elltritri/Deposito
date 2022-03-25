@@ -370,7 +370,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('#tabla2').DataTable();
+        $('#tabla').DataTable();
     
         $(document).on('click','#enviar', function(e) {
             e.preventDefault();
